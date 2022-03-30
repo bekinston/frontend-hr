@@ -7,13 +7,36 @@ div.global{
 }
 
 div.navbar{
+    position: absolute;
+    width: 100%;
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
-    background: linear-gradient(90deg, #174FF1 3.32%, #6ACEE2 100%);
+    z-index: 10;
 }
+
+div.navbar a{
+    color:white;
+}
+
+div.navbar-filled{
+    position: fixed;
+    width: 100%;
+    background: white;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    z-index: 10;
+}
+
+div.navbar-filled a{
+    color:#03157A;
+}
+
 div.mainwindow{
+    z-index: 20;
     margin-top: -20px;
     background: linear-gradient(90deg, #174FF1 3.32%, #6ACEE2 100%);
 }
@@ -126,6 +149,10 @@ button.button-filled{
     font-weight: 600;
 }
 
+button.button-filled:focus{
+    background: white;
+}
+
 button.button-filled-blue{
     padding: 10px 50px 10px 50px;
     border-radius: 20px;
@@ -136,6 +163,10 @@ button.button-filled-blue{
     font-weight: 600;
 }
 
+button.button-filled-blue:focus{
+    background: #144AF1;
+}
+
 button.button-outlined{
     padding: 10px 50px 10px 50px;
     border-radius: 20px;
@@ -144,6 +175,10 @@ button.button-outlined{
     font-family: 'Poppins', sans-serif;
     color: white;
     font-weight: 600;
+}
+
+button.button-outlined:focus{
+    background: transparent;
 }
 
 p.hometext{
@@ -190,7 +225,6 @@ div.registercard{
 }
 
 div.registerback {
-    margin-top: -20px;
     background: linear-gradient(90deg, rgba(23, 79, 241, 0.1) 3.32%, rgba(106, 206, 226, 0.1) 100%);
 }
 
@@ -301,6 +335,97 @@ span.foot-above-span{
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
     color: white;
+}
+
+div.circle{
+    position: absolute;
+    width: 171px;
+    height: 173px;
+    left: 13%;
+    top: 58px;
+
+    background: linear-gradient(180deg, rgba(80, 166, 231, 0.3) 0%, rgba(23, 79, 241, 0.3) 100%);
+}
+
+div.pos{
+    position: absolute;
+    width: 600px;
+    height: 100%;
+    left:20%;
+    top:100%;
+}
+
+
+
+div.rectangle60{
+    position: absolute;
+    width: 404px;
+    height: 134px;
+    right: 300px;
+    top: -90px;
+
+    background: linear-gradient(180deg, rgba(175, 237, 226, 0.34) 0%, rgba(175, 237, 226, 0) 100%);
+    border-radius: 15px;
+    transform: rotate(-30.86deg);
+}
+
+div.rectangle57{
+    position: absolute;
+    width: 247.06px;
+    height: 134px;
+    right: 415px;
+    top: 135px;
+
+    background: linear-gradient(180deg, rgba(175, 237, 226, 0.34) 0%, rgba(175, 237, 226, 0) 100%);
+    border-radius: 15px;
+    transform: rotate(-30.86deg);
+}
+
+div.rectangle59{
+    position: absolute;
+    width: 404px;
+    height: 134px;
+    right: 30px;
+    top: -50px;
+    background: rgba(175, 237, 226, 0.34);
+    border-radius: 15px;
+    transform: rotate(-30.86deg);
+}
+
+
+div.rectangle58{
+    position: absolute;
+    width: 477.46px;
+    height: 134px;
+    right: -65px;
+    top: 107px;
+
+    background: linear-gradient(269.61deg, rgba(175, 237, 226, 0) 0.64%, rgba(175, 237, 226, 0.34) 107.25%);
+    border-radius: 15px;
+    transform: rotate(-30.86deg);
+}
+
+div.rectangle62{
+    position: absolute;
+    width: 404px;
+    height: 134px;
+    right: -200px;
+    top: 195px;
+
+    background: rgba(175, 237, 226, 0.34);
+    border-radius: 15px;
+    transform: rotate(-30.86deg);
+}
+
+div.rectangle61{
+    position: absolute;
+    width: 370px;
+    height: 115px;
+    right: -150px;
+    top: 405px;
+    background: rgba(175, 237, 226, 0.34);
+    border-radius: 15px;
+    transform: rotate(-30.86deg);
 }
 
 

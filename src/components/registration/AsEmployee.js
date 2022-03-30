@@ -6,6 +6,7 @@ import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext";
 import {useAuth} from "../../hooks/auth.hook";
 import {Loader} from "../utils/Loader";
+import M from 'materialize-css';
 
 export const AsEmployee = () => {
     const navigate = useNavigate();
@@ -40,26 +41,34 @@ export const AsEmployee = () => {
 
 
     const Register = async() => {
-        await axios.post("http://hr-backend.jcloud.kz/registration/", {...data})
-            .then(async (response) => {
-                console.log(response)
-                if(!ready){
-                    return <Loader/>
-                }
-                axios.post("http://hr-backend.jcloud.kz/auth/", {"username": data.username, "password": data.password})
-                    .then((response) => {
-                        console.log(response.data.token);
-                        auth.login(response.data.token);
-                        if(!ready){
-                            return <Loader/>
-                        }
-                        navigate('/profile');
-                    }, (error) => {
-                        console.log(error)
-                    })
-            }, (error) => {
-                console.log(error)
-            })
+        if(data.password === confirm.confirm_password){
+            await axios.post("http://hr-backend.jcloud.kz/registration/", {...data})
+                .then(async (response) => {
+                    console.log(response)
+                    if(!ready){
+                        return <Loader/>
+                    }
+                    axios.post("http://hr-backend.jcloud.kz/auth/", {"username": data.username, "password": data.password})
+                        .then((response) => {
+                            console.log(response.data);
+                            auth.login(response.data.token);
+                            if(!ready){
+                                return <Loader/>
+                            }
+                            navigate('/profile');
+                        }, (error) => {
+                            console.log(error)
+                        })
+                }, (error) => {
+                    if(error.response){
+                        console.log(error.response.data);
+                        M.toast({html: error.response.data.message})
+                    }
+                })
+        }else{
+            M.toast({html: 'Password do not match'})
+        }
+
     }
 
 
@@ -73,6 +82,7 @@ export const AsEmployee = () => {
                             style={{marginTop:10}}
                             id="first_name"
                             type="text"
+                            required
                             name="first_name"
                             className="yellow-input"
                             onChange={changeHandler}
@@ -120,7 +130,7 @@ export const AsEmployee = () => {
                         <input
                             style={{marginTop:10}}
                             id="password"
-                            type="text"
+                            type="password"
                             name="password"
                             className="yellow-input"
                             onChange={changeHandler}
@@ -183,7 +193,7 @@ export const AsEmployee = () => {
                         <input
                             style={{marginTop:10}}
                             id="confirm_password"
-                            type="text"
+                            type="password"
                             name="confirm_password"
                             className="yellow-input"
                             onChange={confirmHandler}

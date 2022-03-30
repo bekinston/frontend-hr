@@ -43,8 +43,18 @@ export const Login = () => {
     return(
         <>
             <div className="row">
+                <div className='circle'></div>
+                <div className='col s12'>
+                    <div className='rectangle60'></div>
+                    <div className='rectangle57'></div>
+                    <div className='rectangle59'></div>
+                    <div className='rectangle58'></div>
+                    <div className='rectangle62'></div>
+                    <div className='rectangle61'></div>
+                </div>
+
                 <div className="col s12 mainwindow">
-                        <div className="loginwindow col l4 m8 s12 offset-l2">
+                        <div className="loginwindow col l4 m8 s12 offset-l2" style={{marginTop:100}}>
                             <h3 className="loginheader">Lorem ipsum, or lipsum as it is sometimes know! </h3>
                             <input className="box-input" placeholder="Login" onChange={changeHandler} name='username'/>
                             <input className="box-input" placeholder="Password" onChange={changeHandler} name="password"/>

@@ -1,11 +1,18 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {OptionsFetch} from "./OptionsFetch";
 import {OptionsList} from "./OptionsList";
 import {useNavigate} from "react-router-dom";
+import {Loader} from "../utils/Loader";
+import M from "materialize-css";
+import {AuthContext} from "../../context/AuthContext";
+import {useAuth} from "../../hooks/auth.hook";
 
 export const AsCompany = () => {
     const navigate = useNavigate();
+    const {token, login, logout, ready} = useAuth();
+    const auth = useContext(AuthContext);
+
 
     const [confirm, setConfirm] = useState({
         confirm_password:''
@@ -32,24 +39,36 @@ export const AsCompany = () => {
         setConfirm({ ...confirm, [event.target.name]: event.target.value})
     }
 
-    const getCities = async() => {
-        await axios.get("http://hr-backend.jcloud.kz/properties/cities/", )
-            .then((response) => {
-                setCities(response.data)
-            }, (error) => {
-                console.log(error)
-            })
-    }
 
 
     const Register = async() => {
-        await axios.post("http://hr-backend.jcloud.kz/registration/", {...data})
-            .then((response) => {
-                console.log(response)
-                navigate('/');
-            }, (error) => {
-                console.log(error)
-            })
+        if(data.password === confirm.confirm_password){
+            await axios.post("http://hr-backend.jcloud.kz/registration/", {...data})
+                .then(async (response) => {
+                    console.log(response)
+                    if(!ready){
+                        return <Loader/>
+                    }
+                    axios.post("http://hr-backend.jcloud.kz/auth/", {"username": data.username, "password": data.password})
+                        .then((response) => {
+                            console.log(response.data);
+                            auth.login(response.data.token);
+                            if(!ready){
+                                return <Loader/>
+                            }
+                            navigate('/profile');
+                        }, (error) => {
+                            console.log(error)
+                        })
+                }, (error) => {
+                    if(error.response){
+                        console.log(error.response.data);
+                        M.toast({html: error.response.data.message})
+                    }
+                })
+        }else{
+            M.toast({html: 'Password do not match'})
+        }
     }
 
 
@@ -96,7 +115,7 @@ export const AsCompany = () => {
                         <input
                             style={{marginTop:10}}
                             id="password"
-                            type="text"
+                            type="password"
                             name="password"
                             className="yellow-input"
                             onChange={changeHandler}
@@ -152,7 +171,7 @@ export const AsCompany = () => {
                         <input
                             style={{marginTop:10}}
                             id="confirm_password"
-                            type="text"
+                            type="password"
                             name="confirm_password"
                             className="yellow-input"
                             onChange={confirmHandler}

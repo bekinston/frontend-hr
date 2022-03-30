@@ -15,7 +15,7 @@ class Registration extends Component{
                 <div className = 'row'>
                     <div className = 'col s12 registerback'>
                         <div className='container' style={{paddingTop:60}}>
-                            <div className='col s10 offset-s1 card registercard z-depth-0' style={{marginBottom:90, marginTop:30}}>
+                            <div className='col s10 offset-s1 card registercard z-depth-0' style={{marginBottom:90, marginTop:90}}>
                                 <h4 className='label-reg'>Registration</h4>
                                 <div className='col s12' style={{marginTop:20}}>
                                     <ul
