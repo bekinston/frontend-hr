@@ -11,7 +11,7 @@ import M from 'materialize-css';
 export const AsEmployee = () => {
     const navigate = useNavigate();
     const auth = useContext(AuthContext);
-    const {token, login, logout, ready} = useAuth()
+    const {ready} = useAuth()
 
     const [confirm, setConfirm] = useState({
             confirm_password:''
@@ -39,26 +39,24 @@ export const AsEmployee = () => {
         setConfirm({ ...confirm, [event.target.name]: event.target.value})
     }
 
+    const Login = async() => {
+        axios.post("http://hr-backend.jcloud.kz/auth/", {username: data.username, password: data.password})
+            .then((response) => {
+                console.log(response.data);
+                auth.login(response.data.token);
+                navigate('/profile');
+            }, (error) => {
+                console.log(error)
+            })
+    }
+
 
     const Register = async() => {
         if(data.password === confirm.confirm_password){
             await axios.post("http://hr-backend.jcloud.kz/registration/", {...data})
                 .then(async (response) => {
                     console.log(response)
-                    if(!ready){
-                        return <Loader/>
-                    }
-                    axios.post("http://hr-backend.jcloud.kz/auth/", {"username": data.username, "password": data.password})
-                        .then((response) => {
-                            console.log(response.data);
-                            auth.login(response.data.token);
-                            if(!ready){
-                                return <Loader/>
-                            }
-                            navigate('/profile');
-                        }, (error) => {
-                            console.log(error)
-                        })
+                    await Login();
                 }, (error) => {
                     if(error.response){
                         console.log(error.response.data);
@@ -68,7 +66,6 @@ export const AsEmployee = () => {
         }else{
             M.toast({html: 'Password do not match'})
         }
-
     }
 
 

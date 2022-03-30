@@ -40,6 +40,18 @@ export const AsCompany = () => {
     }
 
 
+    const Login = async() => {
+        axios.post("http://hr-backend.jcloud.kz/auth/", {username: data.username, password: data.password})
+            .then((response) => {
+                console.log(response.data);
+                auth.login(response.data.token);
+                navigate('/profile');
+            }, (error) => {
+                console.log(error)
+            })
+    }
+
+
 
     const Register = async() => {
         if(data.password === confirm.confirm_password){
@@ -49,17 +61,7 @@ export const AsCompany = () => {
                     if(!ready){
                         return <Loader/>
                     }
-                    axios.post("http://hr-backend.jcloud.kz/auth/", {"username": data.username, "password": data.password})
-                        .then((response) => {
-                            console.log(response.data);
-                            auth.login(response.data.token);
-                            if(!ready){
-                                return <Loader/>
-                            }
-                            navigate('/profile');
-                        }, (error) => {
-                            console.log(error)
-                        })
+                    await Login();
                 }, (error) => {
                     if(error.response){
                         console.log(error.response.data);
@@ -128,9 +130,9 @@ export const AsCompany = () => {
                         <label className='input-label'>Company Name</label>
                         <input
                             style={{marginTop:10}}
-                            id="last_name"
+                            id="company_name"
                             type="text"
-                            name="last_name"
+                            name="company_name"
                             className="yellow-input"
                             onChange={changeHandler}
                         />
