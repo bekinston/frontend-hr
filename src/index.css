@@ -152,6 +152,7 @@ p.hometext{
 
 div.footer{
     padding-top: 80px;
+    margin-top: -20px;
     margin-bottom: -10px;
     background: linear-gradient(90deg, rgba(23, 79, 241, 0.1) 3.32%, rgba(106, 206, 226, 0.1) 100%);
 }
@@ -180,6 +181,20 @@ p.footer-right-content3{
     padding: 20px;
     padding-right: 100px;
     padding-left: 100px;
+}
+
+div.registercard{
+    border-radius: 15px;
+    padding: 30px !important;
+}
+
+div.registerback {
+    margin-top: -20px;
+    background: linear-gradient(90deg, rgba(23, 79, 241, 0.1) 3.32%, rgba(106, 206, 226, 0.1) 100%);
+}
+
+div.pageitem{
+    background: linear-gradient(90deg, #174FF1 3.32%, #6ACEE2 100%);
 }
 
 
