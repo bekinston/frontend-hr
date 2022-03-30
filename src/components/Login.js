@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {useAuth} from "../hooks/auth.hook";
 import {Loader} from "./utils/Loader";
+import {Bb} from "./utils/Bb";
 
 
 
@@ -43,16 +44,7 @@ export const Login = () => {
     return(
         <>
             <div className="row">
-                <div className='circle'></div>
-                <div className='col s12'>
-                    <div className='rectangle60'></div>
-                    <div className='rectangle57'></div>
-                    <div className='rectangle59'></div>
-                    <div className='rectangle58'></div>
-                    <div className='rectangle62'></div>
-                    <div className='rectangle61'></div>
-                </div>
-
+                <Bb/>
                 <div className="col s12 mainwindow">
                         <div className="loginwindow col l4 m8 s12 offset-l2" style={{marginTop:100}}>
                             <h3 className="loginheader">Lorem ipsum, or lipsum as it is sometimes know! </h3>
@@ -70,11 +62,15 @@ export const Login = () => {
                                     <Link to='/profile'><button className="button-filled" onClick={Login}>Log In</button></Link>
                                 </div>
                                 <div className="right">
+
                                     <button className="button-outlined">Register</button>
                                 </div>
                             </div>
                     </div>
                 </div>
+
+
+
             </div>
 
 

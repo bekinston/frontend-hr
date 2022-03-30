@@ -15,7 +15,7 @@ export const Home = () => {
         <>
 
                 <div>
-                    {!isAuthenticated && <Login/>}
+                    {!isAuthenticated && <Login/> }
                     <div className="container">
                         <div className="row">
 

@@ -36,7 +36,7 @@ div.navbar-filled a{
 }
 
 div.mainwindow{
-    z-index: 20;
+    z-index: 0;
     margin-top: -20px;
     background: linear-gradient(90deg, #174FF1 3.32%, #6ACEE2 100%);
 }
@@ -52,17 +52,20 @@ span.navspan{
 }
 
 div.loginwindow{
+    z-index: 100;
     min-width: 500px;
     max-width: 500px;
 }
 
 div.mainwindowaction{
+    z-index: 100;
     margin-top: 20px;
     margin-bottom: 200px;
     width: 95%;
 }
 
 h3.loginheader{
+    z-index: 100;
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 300;
@@ -71,6 +74,7 @@ h3.loginheader{
 }
 
 h3.homeheader{
+    z-index: 100;
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 600;
@@ -79,6 +83,7 @@ h3.homeheader{
 }
 
 input.box-input{
+    z-index: 100;
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -94,15 +99,18 @@ input.box-input{
 }
 
 input.box-input:active{
+    z-index: 100;
     border-bottom:1px solid white!important;
     box-shadow: 0 1px 0 0 transparent !important;
 }
 
 input.box-input::placeholder{
+    z-index: 100;
     color:white;
 }
 
 input[type=password].box-input{
+    z-index: 100;
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -118,21 +126,25 @@ input[type=password].box-input{
 }
 
 input[type=password].box-input:active{
+    z-index: 100;
     border-bottom:1px solid white!important;
     box-shadow: 0 1px 0 0 transparent !important;
 }
 
 input[type=password].box-input::placeholder{
+    z-index: 100;
     color:white;
 }
 
 span.whitespan{
+    z-index: 100;
     color:white;
     width: 85%;
     font-weight:100;
 }
 
 input.checkbox-blue-grey[type="checkbox"].filled-in:checked + span:not(.lever):after {
+    z-index: 100;
     top: 0;
     border: 2px solid white;
     background-color: transparent;
@@ -358,6 +370,7 @@ div.pos{
 
 
 div.rectangle60{
+    z-index: 1;
     position: absolute;
     width: 404px;
     height: 134px;
@@ -370,6 +383,7 @@ div.rectangle60{
 }
 
 div.rectangle57{
+    z-index: 1;
     position: absolute;
     width: 247.06px;
     height: 134px;
@@ -382,6 +396,7 @@ div.rectangle57{
 }
 
 div.rectangle59{
+    z-index: 1;
     position: absolute;
     width: 404px;
     height: 134px;
@@ -394,6 +409,7 @@ div.rectangle59{
 
 
 div.rectangle58{
+    z-index: 1;
     position: absolute;
     width: 477.46px;
     height: 134px;
@@ -406,6 +422,7 @@ div.rectangle58{
 }
 
 div.rectangle62{
+    z-index: 1;
     position: absolute;
     width: 404px;
     height: 134px;
@@ -418,6 +435,7 @@ div.rectangle62{
 }
 
 div.rectangle61{
+    z-index: 1;
     position: absolute;
     width: 370px;
     height: 115px;
