@@ -6,20 +6,30 @@ import {Navbar} from './components/Navbar'
 import {useAuth} from "./hooks/auth.hook"
 import 'materialize-css'
 import {Footer} from "./components/Footer";
+import {Loader} from "./components/utils/Loader";
+import {Anavbar} from "./components/Anavbar";
 
 
 function App() {
-    const {token, login, logout, userId, ready, company} = useAuth()
+    const {token, login, logout, ready} = useAuth()
+
     const isAuthenticated = !!token
     const routes = useRoutes(isAuthenticated)
+    console.log(token)
+
+
+    if (!ready){
+        return <Loader/>
+    }
 
 
     return (
         <AuthContext.Provider value={{
-            token, login, logout, userId, isAuthenticated
+            token, login, logout, isAuthenticated
         }}>
             <Router>
-                {<Navbar />}
+                {!isAuthenticated && <Navbar/>}
+                {isAuthenticated && <Anavbar/>}
                 <div className="global">
                     {routes}
                 </div>

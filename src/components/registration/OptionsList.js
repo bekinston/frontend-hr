@@ -10,7 +10,6 @@ export const OptionsList = ({ cities }) => {
     return (
         <>
 
-                <option value=''>Choose your city</option>
                 { cities.map((city, index) => {
                     return (
                         <>

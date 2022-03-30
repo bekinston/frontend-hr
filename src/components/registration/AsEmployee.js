@@ -1,15 +1,21 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {OptionsFetch} from "./OptionsFetch";
 import {OptionsList} from "./OptionsList";
+import {useNavigate} from "react-router-dom";
+import {AuthContext} from "../../context/AuthContext";
+import {useAuth} from "../../hooks/auth.hook";
+import {Loader} from "../utils/Loader";
 
 export const AsEmployee = () => {
+    const navigate = useNavigate();
+    const auth = useContext(AuthContext);
+    const {token, login, logout, ready} = useAuth()
 
     const [confirm, setConfirm] = useState({
             confirm_password:''
     })
 
-    const [cities, setCities] = useState();
 
     const [data, setData] = useState({
         is_company:false,
@@ -32,20 +38,25 @@ export const AsEmployee = () => {
         setConfirm({ ...confirm, [event.target.name]: event.target.value})
     }
 
-    const getCities = async() => {
-        await axios.get("http://hr-backend.jcloud.kz/properties/cities/", )
-            .then((response) => {
-                setCities(response.data)
-            }, (error) => {
-                console.log(error)
-            })
-    }
-
 
     const Register = async() => {
         await axios.post("http://hr-backend.jcloud.kz/registration/", {...data})
-            .then((response) => {
+            .then(async (response) => {
                 console.log(response)
+                if(!ready){
+                    return <Loader/>
+                }
+                axios.post("http://hr-backend.jcloud.kz/auth/", {"username": data.username, "password": data.password})
+                    .then((response) => {
+                        console.log(response.data.token);
+                        auth.login(response.data.token);
+                        if(!ready){
+                            return <Loader/>
+                        }
+                        navigate('/profile');
+                    }, (error) => {
+                        console.log(error)
+                    })
             }, (error) => {
                 console.log(error)
             })
@@ -55,35 +66,139 @@ export const AsEmployee = () => {
     return(
         <>
             <div>
-                <form >
-                <div className = 'col s6 left'>
+                <div className='col l4 m6 s12 left'>
+                    <div style={{marginTop:30}}>
+                        <label className='input-label'>First Name</label>
+                        <input
+                            style={{marginTop:10}}
+                            id="first_name"
+                            type="text"
+                            name="first_name"
+                            className="yellow-input"
+                            onChange={changeHandler}
+                        />
+                    </div>
 
-                        <input name='first_name' onChange={changeHandler} placeholder='имя'/>
-                        <input name='phone_number'onChange={changeHandler} placeholder='номер' required/>
-                        <input name='username'onChange={changeHandler} placeholder='имаил' required/>
-                        <input name='upload_cv'onChange={changeHandler} placeholder='этого нет' required/>
-                        <input name='password'onChange={changeHandler} placeholder='пароль' required/>
+                    <div style={{marginTop:30}}>
+                        <label className='input-label'>Number</label>
+                        <input
+                            style={{marginTop:10}}
+                            id="phone_number"
+                            type="text"
+                            name="phone_number"
+                            className="yellow-input"
+                            onChange={changeHandler}
+                        />
+                    </div>
+
+                    <div style={{marginTop:30}}>
+                        <label className='input-label'>E-mail</label>
+                        <input
+                            style={{marginTop:10}}
+                            id="username"
+                            type="text"
+                            name="username"
+                            className="yellow-input"
+                            onChange={changeHandler}
+                        />
+                    </div>
+
+                    <div style={{marginTop:30}}>
+                        <label className='input-label'>Upload CV</label>
+                        <input
+                            style={{marginTop:10}}
+                            id="upload_cv"
+                            type="text"
+                            name="upload_cv"
+                            className="yellow-input"
+                            //onChange={changeHandler}
+                        />
+                    </div>
+
+                    <div style={{marginTop:30}}>
+                        <label className='input-label'>Password</label>
+                        <input
+                            style={{marginTop:10}}
+                            id="password"
+                            type="text"
+                            name="password"
+                            className="yellow-input"
+                            onChange={changeHandler}
+                        />
+                    </div>
+                </div>
+
+                <div className = 'col l4 m6 s12 offset-l1 offset-m1'>
+                    <div style={{marginTop:30}}>
+                        <label className='input-label'>Last Name</label>
+                        <input
+                            style={{marginTop:10}}
+                            id="last_name"
+                            type="text"
+                            name="last_name"
+                            className="yellow-input"
+                            onChange={changeHandler}
+                        />
+                    </div>
+
+                    <div style={{marginTop:30}}>
+                        <label className='input-label'>Date of birth</label>
+                        <input
+                            style={{marginTop:10}}
+                            id="birthday"
+                            type="date"
+                            name="birthday"
+                            className="yellow-input"
+                            onChange={changeHandler}
+                        />
+                    </div>
+
+                    <div style={{marginTop:30}}>
+
+                            <label className='input-label'>City</label>
+                            <div style={{marginTop:10}}>
+                                <select className="browser-default select" onChange={changeHandler} name='city'>
+                                    <OptionsFetch/>
+                                </select>
+                            </div>
+
+
+
+                    </div>
+
+                    <div style={{marginTop:40}}>
+                        <label className='input-label'>Upload Certificate</label>
+                        <input
+                            style={{marginTop:10}}
+                            id="upload_cetrificate"
+                            type="text"
+                            name="upload_cetrificate"
+                            className="yellow-input"
+                            //onChange={changeHandler}
+                        />
+                    </div>
+
+                    <div style={{marginTop:30}}>
+                        <label className='input-label'>Confirm Password</label>
+                        <input
+                            style={{marginTop:10}}
+                            id="confirm_password"
+                            type="text"
+                            name="confirm_password"
+                            className="yellow-input"
+                            onChange={confirmHandler}
+                        />
+                    </div>
+                    <div className='right' style={{marginTop:60, marginBottom:50}}>
+                        <button className='button-filled-blue' onClick={Register}>Confirm</button>
+                    </div>
 
                 </div>
 
-                <div className = 'col s6 right'>
-
-                        <input name='last_name'onChange={changeHandler} placeholder='фамилия' required/>
-                        <input name='birthday'onChange={changeHandler} type='date' required/>
-                        <select className="browser-default" onChange={changeHandler} name='city'>
-                            <OptionsFetch/>
-                        </select>
-                        <input name='upload_cetrificate'onChange={changeHandler} required/>
-                        <input name='confirm_password'onChange={confirmHandler} placeholder='пароль' required/>
 
 
-                </div>
-            </form>
-
-                <div className='center'>
-                    <button style={{marginTop:20}} className='button-filled-blue' onClick={Register}>Confirm</button>
-                </div>
             </div>
+
         </>
     )
 }
