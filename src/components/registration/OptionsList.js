@@ -9,7 +9,8 @@ export const OptionsList = ({ cities }) => {
 
     return (
         <>
-            <option>Choose</option>
+
+            <option>Location</option>
                 { cities.map((city, index) => {
                     return (
                         <>

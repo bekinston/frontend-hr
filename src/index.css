@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 div.global{
-
+    font-family: 'Poppins', sans-serif;
 }
 
 div.navbar{
@@ -35,6 +35,24 @@ div.navbar-filled a{
     color:#03157A;
 }
 
+
+div.navbar-filled-nav{
+    width: 100%;
+    background: white;
+    align-content: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    z-index: 10;
+}
+
+div.navbar-filled-nav a{
+    color:#03157A;
+}
+
+
 div.mainwindow{
     z-index: 0;
     margin-top: -20px;
@@ -42,6 +60,7 @@ div.mainwindow{
 }
 
 li.navli{
+    padding: 10px;
     display: inline-block;
     padding-right: 30px;
     padding-left: 30px;
@@ -49,6 +68,7 @@ li.navli{
 
 span.navspan{
     color:white;
+    justify-content: center;
 }
 
 div.loginwindow{
@@ -162,6 +182,20 @@ button.button-filled{
 }
 
 button.button-filled:focus{
+    background: white;
+}
+
+button.button-filled-nav{
+    padding: 10px 50px 10px 50px;
+    border-radius: 20px;
+    background: white;
+    border:3px solid white;
+    font-family: 'Poppins', sans-serif;
+    color: #03157;
+    font-weight: 600;
+}
+
+button.button-filled-nav:focus{
     background: white;
 }
 
@@ -445,6 +479,73 @@ div.rectangle61{
     border-radius: 15px;
     transform: rotate(-30.86deg);
 }
+
+div.headh1 {
+    background: linear-gradient(90deg, #174FF1 3.32%, #6ACEE2 100%);
+    border-radius: 500px;
+    padding: 5px;
+}
+
+div.headh1 h4{
+    height: 70px;
+    color:white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+
+div.filter {
+    background: white;
+    padding: 5px;
+    height: 60px;
+    border-radius: 500px;
+}
+
+div.filter h4{
+    color:white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+
+div.filter button{
+    margin-right: -15px;
+    background: #0016DC;
+    color: white;
+    border: 1px solid #0016DC;
+    margin-top: 5px;
+    border-radius: 25px;
+    padding-right: 30px;
+    padding-left: 30px;
+    height: 50px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: lighter;
+}
+
+div.filter select{
+    border: 1px solid white;
+    font-family: 'Poppins', sans-serif;
+}
+
+div.filter input{
+    border: 1px solid white;
+    font-family: 'Poppins', sans-serif;
+}
+
+div.filter select:focus{
+    border: 1px solid white;
+}
+
+div.filter select:active{
+    border: 1px solid white;
+}
+
+h6.filterh6{
+    color: #03157A;
+    font-weight: lighter;
+}
+
+
+
 
 
 

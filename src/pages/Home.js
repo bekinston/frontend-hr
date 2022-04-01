@@ -4,10 +4,15 @@ import homeimg1 from "../assets/home/homeimg1.png"
 import {HotListingJobFetch} from "../components/home-content-blocks/HotListingJobFetch";
 import {useAuth} from "../hooks/auth.hook";
 import {AuthContext} from "../context/AuthContext";
+import {Loader} from "../components/utils/Loader";
 
 export const Home = () => {
     const {token, login, logout, ready} = useAuth()
     const isAuthenticated = !!token
+
+    if (!ready){
+        return <Loader/>
+    }
 
 
 

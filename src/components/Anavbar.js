@@ -1,34 +1,24 @@
-import {useContext} from "react";
-import {AuthContext} from "../context/AuthContext";
-import {useNavigate} from "react-router-dom";
-import {Loader} from "./utils/Loader";
-import {useAuth} from "../hooks/auth.hook";
+import {NavLink} from "react-router-dom";
 
 
 export const Anavbar = () => {
-    const {token, login, logout, ready} = useAuth()
-    const auth = useContext(AuthContext);
-    const history = useNavigate();
 
-    const logoutHandler = event => {
-        event.preventDefault();
-        auth.logout();
-        window.location.reload(false);
-}
 
     return(
         <>
-            <div className="row navbar">
+            <div className='row navbar-filled-nav'>
                 <div className="col s12">
                     <div>
                         <ul className="right">
-                            <p>еще в работе</p>
-                            <button onClick={logoutHandler}>logout</button>
+                            <li className="navli"><NavLink to="/"><span>Home</span></NavLink></li>
+                            <li className="navli"><NavLink to="/about"><span>About</span></NavLink></li>
+                            <li className="navli"><NavLink to="/tests"><span>Tests</span></NavLink></li>
+                            <li className="navli"><NavLink to="/vacancies"><span>Vacancies</span></NavLink></li>
+                            <li className="navli" style={{marginRight:100}}><NavLink to={'/profile'}><span>Profile</span></NavLink></li>
                         </ul>
                     </div>
                 </div>
             </div>
-
         </>
     )
 }
