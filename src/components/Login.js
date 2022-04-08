@@ -39,6 +39,10 @@ export const Login = () => {
             })
     }
 
+    const Register = () =>{
+        navigate('/register');
+    }
+
 
 
     return(
@@ -63,7 +67,7 @@ export const Login = () => {
                                 </div>
                                 <div className="right">
 
-                                    <button className="button-outlined">Register</button>
+                                    <button onClick={Register} className="button-outlined">Register</button>
                                 </div>
                             </div>
                     </div>

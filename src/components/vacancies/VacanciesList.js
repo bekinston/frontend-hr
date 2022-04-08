@@ -11,9 +11,9 @@ export const VacanciesList = ({ vacancies }) => {
         <>
 
 
-                    <div className='col s12 offset-s1' style={{minHeight:1000}}>
+                    <div className='col s12 offset-s1' style={{minHeight:1000, marginTop:10}}>
                         <div>
-                            <h5> vacancy “Python Developer”</h5>
+                            <h5>4 Vacancy “Backend”</h5>
                         </div>
                         <div style={{marginTop:30}}>
                             { vacancies.map((vacancy, index) => {
@@ -21,22 +21,24 @@ export const VacanciesList = ({ vacancies }) => {
                                     <>
                                         <div>
                                             <div className='col s2'>
-                                                <img style={{background:'black', width:100, height:100}}/>
+                                                <img style={{background:'black', width:130, height:130}}/>
                                             </div>
+
 
                                             <div style={{marginLeft:10, minWidth:350,}} className='col'>
                                                 <h6 className='filterh6'>{vacancy.title}</h6>
                                                 <h6 className='filterh6'>For {vacancy.company.company_name}</h6>
                                             </div>
 
-                                            <div className='col s2 pull-s2' style={{marginTop:30}}>
+                                            <div className='col s2 pull-s2' style={{marginTop:30, marginLeft:200}}>
                                                 <button className='button-filled-blue'>Apply</button>
                                             </div>
 
 
-                                                <div className='col s12' style={{
+                                                <div className='col s6' style={{
                                                     display: 'flex',
-                                                    flexDirection: 'row'
+                                                    flexDirection: 'row',
+                                                    marginTop:10
                                                 }}>
                                                     <img src={icon} style={{display:'flex', flexDirection:'row',width:15, height:15, marginTop:18, marginRight:5}}/>
                                                     <p style={{marginRight:30}}>{vacancy.city.name}</p>

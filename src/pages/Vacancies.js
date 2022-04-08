@@ -28,14 +28,14 @@ export const Vacancies = () => {
         <>
             <div className='row'>
                 <div className = 'col s12' style={{marginTop:-20}}>
-                    <div  className= 'container'>
+                    <div style={{width:"86%", marginLeft:"7%"}}>
                         <div className='headh1 center'>
                             <h4>Vacancies</h4>
                         </div>
                         <div className='col s8 offset-s2 filter z-depth-2' style={{marginTop:-30}}>
                             <div className='col s5' style={{marginLeft:0, marginTop:10, display:'flex', flexDirection:'row'}}>
                                 <img src={search} style={{marginRight:5,width:15, height:15, marginTop:15}}/>
-                                <input />
+                                <input value='Backend' />
                             </div>
                             <div className='col s5 center' style={{marginTop:10, display:'flex', flexDirection:'row'}}>
                                 <img src={icon} style={{width:15, height:15, marginTop:15}}/>
@@ -49,11 +49,11 @@ export const Vacancies = () => {
                         </div>
 
 
-                        <div className='col s9 right'>
+                        <div className='col s10 right'>
                             <VacanciesFetch/>
                         </div>
 
-                        <div className='col s3 left'>
+                        <div className='col s2 left'>
                             <div style={{marginTop:40, paddingLeft:30}}>
                                 <h6>Refine by Salary</h6>
                                 <div>
@@ -70,7 +70,7 @@ export const Vacancies = () => {
                                 <p>
                                     <label>
                                         <input type="radio" onChange={changeHandler} value='all'  name='employment'/>
-                                        <span>both</span>
+                                        <span>All</span>
                                     </label>
                                 </p>
                                 <p>
@@ -85,7 +85,12 @@ export const Vacancies = () => {
                                         <span>Part-time</span>
                                     </label>
                                 </p>
-
+                                <p>
+                                    <label>
+                                        <input type="radio" onChange={changeHandler} value='internship'  name='employment'/>
+                                        <span>Internship</span>
+                                    </label>
+                                </p>
                             </div>
 
                             <div style={{marginTop:40, paddingLeft:30}}>
@@ -93,13 +98,19 @@ export const Vacancies = () => {
                                 <p>
                                     <label>
                                         <input type="checkbox" />
-                                        <span>Full-time</span>
+                                        <span>Backend</span>
                                     </label>
                                 </p>
                                 <p>
                                     <label>
                                         <input type="checkbox" />
-                                        <span>Part-time</span>
+                                        <span>Frontend</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" />
+                                        <span>Design</span>
                                     </label>
                                 </p>
                             </div>
@@ -109,13 +120,25 @@ export const Vacancies = () => {
                                 <p>
                                     <label>
                                         <input type="checkbox" />
-                                        <span>Full-time</span>
+                                        <span>React</span>
                                     </label>
                                 </p>
                                 <p>
                                     <label>
                                         <input type="checkbox" />
-                                        <span>Part-time</span>
+                                        <span>Vue.js</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" />
+                                        <span>Python</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" />
+                                        <span>Java</span>
                                     </label>
                                 </p>
                             </div>
