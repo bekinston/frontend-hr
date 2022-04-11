@@ -1,32 +1,26 @@
-import {NavLink} from 'react-router-dom'
+import {NavLink, useLocation} from 'react-router-dom'
 import {useEffect, useState} from "react";
 
 export const Navbar = () => {
-    const[win, setWin] = useState('');
-    const url = window.location.pathname;
-
     const [transparent, setTransparent] = useState(true);
+    const location = useLocation();
 
-    const Navback = () => {
-        if(win === '/'){
-            return setTransparent(true);
-        }
-        if(win === '/register'){
-            return setTransparent(false);
-        }
-        if(win === '/about'){
-            return setTransparent(false);
-        }
+    const changeColor = () => {
+       if(location.pathname === '/'){
+           setTransparent(true);
+       }
+       if(location.pathname === '/about'){
+           setTransparent(false);
+       }
+       if(location.pathname === '/register'){
+           setTransparent(false);
+       }
     }
 
     useEffect(() => {
-        Navback();
-        setWin(url);
-    });
-
-
-
-
+        console.log(location.pathname);
+        changeColor();
+    }, [location]);
 
     return(
         <>

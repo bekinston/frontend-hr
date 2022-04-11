@@ -9,6 +9,8 @@ div.global{
 div.navbar{
     position: absolute;
     width: 100%;
+    height: 70px;
+    margin-top: -10px;
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 600;
@@ -23,6 +25,8 @@ div.navbar a{
 div.navbar-filled{
     position: fixed;
     width: 100%;
+    height: 70px;
+    margin-top: -10px;
     background: white;
     font-family: 'Poppins', sans-serif;
     font-style: normal;
@@ -43,6 +47,8 @@ div.navbar-filled-nav{
     justify-content: center;
     font-family: 'Poppins', sans-serif;
     font-style: normal;
+    height: 70px;
+    margin-top: -10px;
     font-weight: 600;
     font-size: 18px;
     z-index: 10;
@@ -544,6 +550,18 @@ h6.filterh6{
     font-weight: lighter;
 }
 
+div.colored-back{
+    background: linear-gradient(90deg, rgba(23, 79, 241, 0.1) 3.32%, rgba(106, 206, 226, 0.1) 100%);
+}
+
+img.prof{
+    background: black;
+    height:200px;
+    width:200px;
+    border-radius:100px;
+    object-fit: cover;
+    border: 1px solid #6186EE;
+}
 
 
 

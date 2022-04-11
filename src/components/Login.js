@@ -11,7 +11,8 @@ import {Bb} from "./utils/Bb";
 
 export const Login = () => {
     const auth = useContext(AuthContext);
-    const {token, login, logout, ready} = useAuth()
+    const {token, login, logout, ready} = useAuth();
+    const [disabled, setDisabled] = useState(false);
 
 
     const [data, setData] = useState({
@@ -44,7 +45,6 @@ export const Login = () => {
     }
 
 
-
     return(
         <>
             <div className="row">
@@ -52,8 +52,8 @@ export const Login = () => {
                 <div className="col s12 mainwindow">
                         <div className="loginwindow col l4 m8 s12 offset-l2" style={{marginTop:100}}>
                             <h3 className="loginheader">Lorem ipsum, or lipsum as it is sometimes know! </h3>
-                            <input className="box-input" placeholder="Login" onChange={changeHandler} name='username'/>
-                            <input className="box-input" placeholder="Password" onChange={changeHandler} name="password"/>
+                            <input className="box-input" placeholder="Login" onChange={changeHandler} name='username' style={{paddingLeft:5, paddingRight:5}}/>
+                            <input className="box-input" type={"password"} placeholder="Password" onChange={changeHandler} name="password" style={{paddingLeft:5, paddingRight:5}}/>
                             <p>
                                 <label>
                                     <input type="checkbox" className="filled-in checkbox-blue-grey"/>
