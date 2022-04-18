@@ -11,7 +11,6 @@ export const VacanciesFetch = () => {
     const fetchVacancies = useCallback(async () => {
         try {
             const fetched = await request('http://hr-backend.jcloud.kz/vacancies/', 'GET', null, {
-
             })
             setVacancies(fetched)
             console.log(fetched)
@@ -26,8 +25,6 @@ export const VacanciesFetch = () => {
     if (loading) {
         return <Loader/>
     }
-
-
 
     return (
         <>

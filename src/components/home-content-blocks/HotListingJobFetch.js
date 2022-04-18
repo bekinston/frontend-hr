@@ -10,7 +10,7 @@ export const HotListingJobFetch = () => {
 
     const fetchJobs = useCallback(async () => {
         try {
-            const fetched = await request('', 'GET', null, {
+            const fetched = await request('http://hr-backend.jcloud.kz/vacancies/', 'GET', null, {
 
             })
             setJobs(fetched)

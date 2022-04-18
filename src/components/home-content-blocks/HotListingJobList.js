@@ -1,29 +1,27 @@
-import React from 'react'
+import React from 'react';
+import pin from '../../assets/filter/pin.png';
 
 
 export const HotListingJobList = ({ jobs }) => {
-
+    console.log(jobs);
 
     return (
-        <div className = "row">
-            <div className = "col s12">
-                <div className = "card">
-
-                    <table className="striped responsive-table">
-                        <tbody>
-                        { jobs.map((job, index) => {
-                            return (
-                                <tr>
-                                    <td>{index + 1}</td>
-                                    <td></td>
-                                </tr>
-                            )
-                        }) }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        <div style={{height:400}}>
+                { jobs.map((job, index) => {
+                    return (
+                        <div style={{marginTop:15, display:'flex', alignItems:'center'}}>
+                            <div style={{width:300}}>
+                                <h3 style={{color:'#03157A', fontWeight:'lighter'}}>{job.title}</h3>
+                                <p style={{color:"#03157ACC", fontSize:14}}>{job.salary}</p>
+                                <div style={{display:'flex', alignItems:'center',  marginTop:10}}>
+                                    <img src={pin} height={15} style={{color:'grey'}}/>
+                                    <p  style={{color:"grey", marginLeft:4, fontSize:12}}>{job.company.company_name} {job.city.name} {job.city.country.name}</p>
+                                </div>
+                            </div>
+                            <button style={{marginLeft:70, height:40, boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.15)'}} className={'button-filled-white'}>apply</button>
+                        </div>
+                    )
+                })}
         </div>
-
     )
 }

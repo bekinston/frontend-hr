@@ -1,19 +1,15 @@
 import React, {useContext, useState} from "react";
 import axios from "axios";
 import {AuthContext} from "../context/AuthContext";
-import {Link} from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
+
 import {useAuth} from "../hooks/auth.hook";
 import {Loader} from "./utils/Loader";
 import {Bb} from "./utils/Bb";
 
-
-
 export const Login = () => {
     const auth = useContext(AuthContext);
     const {token, login, logout, ready} = useAuth();
-    const [disabled, setDisabled] = useState(false);
-
 
     const [data, setData] = useState({
         username:'',
@@ -24,8 +20,6 @@ export const Login = () => {
         setData({ ...data, [event.target.name]: event.target.value})
     }
 
-    const navigate = useNavigate();
-
     const Login = async() => {
         await axios.post("http://hr-backend.jcloud.kz/auth/", {...data})
             .then((response) => {
@@ -34,51 +28,33 @@ export const Login = () => {
                 if(!ready){
                    return <Loader/>
                 }
-                navigate('/profile');
+                window.location.reload(false);
             }, (error) => {
                 console.log(error)
             })
     }
 
-    const Register = () =>{
-        navigate('/register');
-    }
-
-
     return(
         <>
-            <div className="row">
-                <Bb/>
-                <div className="col s12 mainwindow">
-                        <div className="loginwindow col l4 m8 s12 offset-l2" style={{marginTop:100}}>
-                            <h3 className="loginheader">Lorem ipsum, or lipsum as it is sometimes know! </h3>
-                            <input className="box-input" placeholder="Login" onChange={changeHandler} name='username' style={{paddingLeft:5, paddingRight:5}}/>
-                            <input className="box-input" type={"password"} placeholder="Password" onChange={changeHandler} name="password" style={{paddingLeft:5, paddingRight:5}}/>
-                            <p>
-                                <label>
-                                    <input type="checkbox" className="filled-in checkbox-blue-grey"/>
-                                    <span className="whitespan">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. </span>
-                                </label>
-                            </p>
-                            <div className = "mainwindowaction">
-                                <div className="left">
-
-                                    <Link to='/profile'><button className="button-filled" onClick={Login}>Log In</button></Link>
-                                </div>
-                                <div className="right">
-
-                                    <button onClick={Register} className="button-outlined">Register</button>
-                                </div>
+            <div style={{background:'linear-gradient(90deg, #174FF1 3.32%, #6ACEE2 100%)', height:500}}>
+                <div style={{zIndex:1}} className='circle'><p style={{color:'transparent'}}>123</p></div>
+                <div style={{ display:'flex'}}>
+                    <div className='login'>
+                        <h2 style={{zIndex:10}}>Make your dream come true with ENJOIN!</h2>
+                        <div style={{width:400}}>
+                            <input onChange={changeHandler} value={data.username} name='username' placeholder='Login' style={{width:'95%', marginBottom:20}}/>
+                            <input onChange={changeHandler} value={data.password} name='password' placeholder='Password' type='password' style={{width:'95%', marginBottom:20}}/>
+                            <input value='false' style={{marginRight:5}} input type='checkbox'/><span style={{alignSelf:'center'}}>By clicking Log In, you agree to our Terms, Data Policy and Cookies Policy.</span>
+                            <div style={{display:'flex', justifyContent:'space-between', marginTop:30, width:'99%'}}>
+                                <button onClick={Login} style={{fontWeight:'lighter'}} className='button-filled-white'>Log In</button>
+                                <NavLink to={'/register'}><button style={{fontWeight:'lighter'}} className='button-outlined-white'>Register</button></NavLink>
                             </div>
+                        </div>
                     </div>
+                    <Bb/>
                 </div>
-
-
-
             </div>
-
-
-
         </>
     )
 }
+

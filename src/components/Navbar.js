@@ -1,5 +1,8 @@
 import {NavLink, useLocation} from 'react-router-dom'
 import {useEffect, useState} from "react";
+import logo from '../assets/logo.svg';
+import logodark from '../assets/logodark.svg'
+
 
 export const Navbar = () => {
     const [transparent, setTransparent] = useState(true);
@@ -24,18 +27,18 @@ export const Navbar = () => {
 
     return(
         <>
-            <div className={transparent === true ? 'row navbar' : 'row navbar-filled'}>
-                <div className="col s12">
-                    <div>
-                        <ul className="right">
-                            <li className="navli"><NavLink to="/"><span>Home</span></NavLink></li>
-                            <li className="navli"><NavLink to="/about"><span>About</span></NavLink></li>
-                            <li className="navli" style={{marginRight:100}}><NavLink to="/register"><span>Register</span></NavLink></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
 
+            <div style={{display:'flex', justifyContent:'space-between'}} className={transparent === true ? 'navigation' : 'navigation-filled'}>
+
+                {
+                    transparent === true ? (<img src={logo} style={{position:'absolute', left:40, top:10, height:30}}/>) : (<img src={logodark} style={{position:'absolute', left:40, top:10, height:30}}/>)
+                 }
+                <ul>
+                    <li><NavLink to="/" style={{ textDecoration: 'none' }}><span>Home</span></NavLink></li>
+                    <li><NavLink to="/about" style={{ textDecoration: 'none' }}><span>About</span></NavLink></li>
+                    <li style={{marginRight:40}}><NavLink to="/register" style={{ textDecoration: 'none' }}><span>Register</span></NavLink></li>
+                </ul>
+            </div>
         </>
     )
 }

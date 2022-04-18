@@ -1,151 +1,102 @@
-import React, {useState} from 'react'
+import React, {useEffect} from 'react';
+import SearchIcon from '../assets/filter/search.png';
+import LocationIcon from '../assets/filter/pin.png';
 import {OptionsFetch} from "../components/registration/OptionsFetch";
-import icon from '../../src/assets/filter/pin.png'
-import search from '../../src/assets/filter/search.png'
 import {VacanciesFetch} from "../components/vacancies/VacanciesFetch";
+import {NavLink} from "react-router-dom";
 
 export const Vacancies = () => {
-    const [filter, setFilter] = useState({
-        from:'',
-        to:'',
-        employment:'',
-        scope:'',
-        position:'',
-    })
-
-    const changeHandler = event => {
-        setFilter({...filter,[event.target.name]: event.target.value});
-
-    }
-
-    const onPress = () => {
-        console.log(filter);
-    }
-
-
-
     return(
         <>
-            <div className='row'>
-                <div className = 'col s12' style={{marginTop:-20}}>
-                    <div style={{width:"86%", marginLeft:"7%"}}>
-                        <div className='headh1 center'>
-                            <h4>Vacancies</h4>
-                        </div>
-                        <div className='col s8 offset-s2 filter z-depth-2' style={{marginTop:-30}}>
-                            <div className='col s5' style={{marginLeft:0, marginTop:10, display:'flex', flexDirection:'row'}}>
-                                <img src={search} style={{marginRight:5,width:15, height:15, marginTop:15}}/>
-                                <input value='Backend' />
-                            </div>
-                            <div className='col s5 center' style={{marginTop:10, display:'flex', flexDirection:'row'}}>
-                                <img src={icon} style={{width:15, height:15, marginTop:15}}/>
-                                <select className='browser-default filter-select'>
-                                    <OptionsFetch/>
-                                </select>
-                            </div>
-                            <div className='col s2 right-align'>
-                                <button onClick={onPress}>Start</button>
-                            </div>
-                        </div>
+            <div className = 'page-head'>
+                <h3>Vacancies</h3>
+            </div>
 
+            <div className = 'filter'>
+                <div className='filter-item' style={{display:'flex', alignItems:'center'}}>
+                    <div style={{placeContent:'flex-start', width:'100%', display:'flex', alignItems:'center'}}>
+                        <img src={SearchIcon} style={{width:20, height:20}}/>
+                        <div className='filter-input'>
+                            <input placeholder='example: backend developer'/>
+                        </div>
+                    </div>
 
-                        <div className='col s10 right'>
-                            <VacanciesFetch/>
+                </div>
+                <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+                    <div style={{placeContent:'flex-start', width:'100%', display:'flex', alignItems:'center'}}>
+                        <img src={LocationIcon} style={{width:20, height:20}}/>
+                        <div className='filter-input'>
+                            <select>
+                                <OptionsFetch/>
+                            </select>
                         </div>
 
-                        <div className='col s2 left'>
-                            <div style={{marginTop:40, paddingLeft:30}}>
-                                <h6>Refine by Salary</h6>
-                                <div>
-                                    <span style={{width:70}}>From <input style={{width:80}} name='from' onChange={changeHandler}/></span>
-                                </div>
-                                <div>
-                                    <span style={{width:70}}>To   <input style={{width:80, marginLeft:20}} name='to' onChange={changeHandler}/></span>
-                                </div>
-                            </div>
+                    </div>
+                    <div style={{placeContent:'flex-end'}}>
+                        <button className='button-search'>Search</button>
+                    </div>
+                </div>
+            </div>
 
-                            <div style={{marginTop:40, paddingLeft:30}}>
-                                <h6>Refine by Employment</h6>
-
-                                <p>
-                                    <label>
-                                        <input type="radio" onChange={changeHandler} value='all'  name='employment'/>
-                                        <span>All</span>
-                                    </label>
-                                </p>
-                                <p>
-                                    <label>
-                                        <input type="radio" onChange={changeHandler} value='fulltime'  name='employment'/>
-                                        <span>Full-time</span>
-                                    </label>
-                                </p>
-                                <p>
-                                    <label>
-                                        <input type="radio" onChange={changeHandler} value='parttime'  name='employment'/>
-                                        <span>Part-time</span>
-                                    </label>
-                                </p>
-                                <p>
-                                    <label>
-                                        <input type="radio" onChange={changeHandler} value='internship'  name='employment'/>
-                                        <span>Internship</span>
-                                    </label>
-                                </p>
-                            </div>
-
-                            <div style={{marginTop:40, paddingLeft:30}}>
-                                <h6>Refine by Major</h6>
-                                <p>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <span>Backend</span>
-                                    </label>
-                                </p>
-                                <p>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <span>Frontend</span>
-                                    </label>
-                                </p>
-                                <p>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <span>Design</span>
-                                    </label>
-                                </p>
-                            </div>
-
-                            <div style={{marginTop:40, paddingLeft:30}}>
-                                <h6>Refine by Position</h6>
-                                <p>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <span>React</span>
-                                    </label>
-                                </p>
-                                <p>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <span>Vue.js</span>
-                                    </label>
-                                </p>
-                                <p>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <span>Python</span>
-                                    </label>
-                                </p>
-                                <p>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <span>Java</span>
-                                    </label>
-                                </p>
-                            </div>
-
+            <div className = 'side-filter'>
+                <div>
+                    <h5>Refine by Salary</h5>
+                    <div>
+                        <div style={{width:'100%', marginTop:5}}>
+                            <p style={{fontSize:12}}>from</p>
+                            <input type='number' style={{width:'80%'}}/>
+                        </div>
+                        <div style={{width:'100%', marginTop:5}}>
+                            <p style={{fontSize:12}}>to</p>
+                            <input type='number' style={{width:'80%'}}/>
                         </div>
                     </div>
                 </div>
+
+                <div style={{marginTop:30}}>
+                    <h5>Refine by Work Experience</h5>
+                    <div style={{display:'flex', width:'100%'}}>
+                        <div className='radio-group'>
+                            <p style={{width:'100%'}}><input style={{marginRight:5}} type="radio" value="Male" name="gender"/>No Matter</p>
+                            <p style={{width:'100%'}}><input style={{marginRight:5}} type="radio" value="Male" name="gender"/>No experience</p>
+                            <p style={{width:'100%'}}><input style={{marginRight:5}} type="radio" value="Male" name="gender"/>1-3 years</p>
+                            <p style={{width:'100%'}}><input style={{marginRight:5}} type="radio" value="Male" name="gender"/>3-6 years</p>
+                            <p style={{width:'100%'}}><input style={{marginRight:5}} type="radio" value="Male" name="gender"/>More than 6 years</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{marginTop:30}}>
+                    <h5>Refine by Scope</h5>
+                    <div style={{display:'flex', width:'100%'}}>
+                        <div className='radio-group'>
+                            <p style={{width:'100%'}}><input style={{marginRight:5}} type="radio" value="Male" name="gender"/>Full-time</p>
+                            <p style={{width:'100%'}}><input style={{marginRight:5}} type="radio" value="Male" name="gender"/>Part-time</p>
+                            <p style={{width:'100%'}}><input style={{marginRight:5}} type="radio" value="Male" name="gender"/>Internship</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{marginTop:30}}>
+                    <h5>Refine by Position</h5>
+                    <div>
+                        <div className='radio-group'>
+                            <p style={{width:'100%'}}><input style={{marginRight:5}} type="radio" value="Male" name="gender"/>Back-End</p>
+                            <p style={{width:'100%'}}><input style={{marginRight:5}} type="radio" value="Male" name="gender"/>Front-End</p>
+                            <p style={{width:'100%'}}><input style={{marginRight:5}} type="radio" value="Male" name="gender"/>Design</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div className = 'page-content' style={{minHeight:600}}>
+                <VacanciesFetch/>
+
+            </div>
+            <div style={{display:'flex', width:'100%', justifyContent:'center', marginBottom:40}}>
+                <center><NavLink to={'/create_vacancy'}><button onClick={()=>{window.scrollTo(0, 0)}} className='button-filled-yellow'>Create My Vacancy</button></NavLink></center>
             </div>
         </>
     )

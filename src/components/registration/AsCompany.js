@@ -4,7 +4,6 @@ import {OptionsFetch} from "./OptionsFetch";
 import {OptionsList} from "./OptionsList";
 import {useNavigate} from "react-router-dom";
 import {Loader} from "../utils/Loader";
-import M from "materialize-css";
 import {AuthContext} from "../../context/AuthContext";
 import {useAuth} from "../../hooks/auth.hook";
 
@@ -65,11 +64,9 @@ export const AsCompany = () => {
                 }, (error) => {
                     if(error.response){
                         console.log(error.response.data);
-                        M.toast({html: error.response.data.message})
                     }
                 })
         }else{
-            M.toast({html: 'Password do not match'})
         }
     }
 
@@ -77,112 +74,112 @@ export const AsCompany = () => {
     return(
         <>
             <div>
-                <div className='col l4 m6 s12 left'>
-                    <div style={{marginTop:30}}>
-                        <label className='input-label'>Company ID</label>
-                        <input
-                            style={{marginTop:10}}
-                            id="company_id"
-                            type="text"
-                            name="company_id"
-                            className="yellow-input"
-                            onChange={changeHandler}
-                        />
-                    </div>
-
-                    <div style={{marginTop:30}}>
-                        <label className='input-label'>Number</label>
-                        <input
-                            style={{marginTop:10}}
-                            id="phone_number"
-                            type="text"
-                            name="phone_number"
-                            className="yellow-input"
-                            onChange={changeHandler}
-                        />
-                    </div>
-
-                    <div style={{marginTop:35}}>
-                        <label className='input-label'>City</label>
-                        <div style={{marginTop:12}}>
-                            <select className="browser-default select" onChange={changeHandler} name='city'>
-                                <OptionsFetch/>
-                            </select>
-                        </div>
-                    </div>
-
-
-                    <div style={{marginTop:40}}>
-                        <label className='input-label'>Password</label>
-                        <input
-                            style={{marginTop:10}}
-                            id="password"
-                            type="password"
-                            name="password"
-                            className="yellow-input"
-                            onChange={changeHandler}
-                        />
-                    </div>
-                </div>
-
-                <div className = 'col l4 m6 s12 offset-l1 offset-m1'>
-                    <div style={{marginTop:30}}>
-                        <label className='input-label'>Company Name</label>
-                        <input
-                            style={{marginTop:10}}
-                            id="company_name"
-                            type="text"
-                            name="company_name"
-                            className="yellow-input"
-                            onChange={changeHandler}
-                        />
-                    </div>
-
-                    <div style={{marginTop:30}}>
-                        <label className='input-label'>E-mail</label>
-                        <input
-                            style={{marginTop:10}}
-                            id="username"
-                            type="text"
-                            name="username"
-                            className="yellow-input"
-                            onChange={changeHandler}
-                        />
-                    </div>
-
-                    <div style={{marginTop:30}}>
-
-                        <label className='input-label'>Address</label>
-                        <div style={{marginTop:10}}>
+                <div style={{display:'flex', marginLeft:20, marginRight:20, width:800, justifyContent:'space-between'}}>
+                    <div>
+                        <div className='filter-input' style={{marginTop:30, width:'80%'}}>
+                            <label className='input-label'>Company ID</label>
                             <input
-                                style={{marginTop:10}}
-                                id="address"
+                                style={{marginTop:10, borderWidth:1, borderColor:'#144AF1', padding: 5, borderRadius:5}}
+                                id="company_id"
                                 type="text"
-                                name="address"
+                                name="company_id"
                                 className="yellow-input"
                                 onChange={changeHandler}
                             />
                         </div>
 
+                        <div className='filter-input' style={{marginTop:30, width:'80%'}}>
+                            <label className='input-label'>Number</label>
+                            <input
+                                style={{marginTop:10, borderWidth:1, borderColor:'#144AF1', padding: 5, borderRadius:5}}
+                                id="phone_number"
+                                type="text"
+                                name="phone_number"
+                                className="yellow-input"
+                                onChange={changeHandler}
+                            />
+                        </div>
 
+                        <div className='filter-input' style={{marginTop:30, width:'80%'}}>
+                            <label className='input-label'>City</label>
+                            <div style={{marginTop:16, borderWidth:1, borderColor:'#144AF1', padding: 5, borderRadius:5}}>
+                                <select>
+                                        className="browser-default select" onChange={changeHandler} name='city'>
+                                    <OptionsFetch/>
+                                </select>
+                            </div>
+                        </div>
 
+                        <div className='filter-input' style={{marginTop:30, width:'80%'}}>
+                            <label className='input-label'>Password</label>
+                            <input
+                                style={{marginTop:10, borderWidth:1, borderColor:'#144AF1', padding: 5, borderRadius:5}}
+                                id="password"
+                                type="password"
+                                name="password"
+                                className="yellow-input"
+                                onChange={changeHandler}
+                            />
+                        </div>
                     </div>
+                    <div>
+                        <div className='filter-input' style={{marginTop:30, width:'80%'}}>
+                            <label className='input-label'>Company Name</label>
+                            <input
+                                style={{marginTop:10, borderWidth:1, borderColor:'#144AF1', padding: 5, borderRadius:5}}
+                                id="company_name"
+                                type="text"
+                                name="company_name"
+                                className="yellow-input"
+                                onChange={changeHandler}
+                            />
+                        </div>
 
-                    <div style={{marginTop:30}}>
-                        <label className='input-label'>Confirm Password</label>
-                        <input
-                            style={{marginTop:10}}
-                            id="confirm_password"
-                            type="password"
-                            name="confirm_password"
-                            className="yellow-input"
-                            onChange={confirmHandler}
-                        />
-                    </div>
-                    <div className='right' style={{marginTop:60, marginBottom:50}}>
-                        <button className='button-filled-blue' onClick={Register}>Confirm</button>
-                    </div>
+                        <div className='filter-input' style={{marginTop:30, width:'80%'}}>
+                            <label className='input-label'>E-mail</label>
+                            <input
+                                style={{marginTop:10, borderWidth:1, borderColor:'#144AF1', padding: 5, borderRadius:5}}
+                                id="username"
+                                type="text"
+                                name="username"
+                                className="yellow-input"
+                                onChange={changeHandler}
+                            />
+                        </div>
 
+                        <div className='filter-input' style={{marginTop:30, width:'80%'}}>
+
+                            <label className='input-label'>Address</label>
+                            <div style={{marginTop:10}}>
+                                <input
+                                    style={{marginTop:10, borderWidth:1, borderColor:'#144AF1', padding: 5, borderRadius:5}}
+                                    id="address"
+                                    type="text"
+                                    name="address"
+                                    className="yellow-input"
+                                    onChange={changeHandler}
+                                />
+                            </div>
+
+
+
+                        </div>
+
+                        <div className='filter-input' style={{marginTop:30, width:'80%'}}>
+                            <label className='input-label'>Confirm Password</label>
+                            <input
+                                style={{marginTop:10, borderWidth:1, borderColor:'#144AF1', padding: 5, borderRadius:5}}
+                                id="confirm_password"
+                                type="password"
+                                name="confirm_password"
+                                className="yellow-input"
+                                onChange={confirmHandler}
+                            />
+                        </div>
+                        <div className='right' style={{display:'flex',marginTop:60, marginBottom:50, justifyContent:'flex-end', width:'85%'}}>
+                            <button className='button-filled-blue' onClick={Register}>Confirm</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

@@ -1,6 +1,5 @@
 import React from 'react'
 import {Routes, Route, Navigate} from 'react-router-dom'
-
 import {Home} from './pages/Home'
 import {About} from './pages/About'
 import {DescriptionTest} from './pages/DescriptionTest'
@@ -10,6 +9,7 @@ import {Test} from './pages/Test'
 import {Tests} from './pages/Tests'
 import {User} from './pages/User'
 import {Vacancies} from './pages/Vacancies'
+import {CreateVacancy} from './pages/CreateVacancy'
 
 
 
@@ -21,12 +21,13 @@ export const useRoutes = isAuthenticated => {
                 <Route path="/" element ={<Home/>}/>
                 <Route path="/about" element ={<About/>}/>
                 <Route path="/tests" element ={<Tests/>}/>
-                <Route path="/tests/${id}/" element ={<DescriptionTest/>}/>
+                <Route path="/tests/:id/" element ={<DescriptionTest/>}/>
                 <Route path="/test" element ={<Test/>}/>
                 <Route path="/profile" element ={<User/>}/>
                 <Route path="/register" element ={<Registration/>}/>
                 <Route path="/vacancies" element ={<Vacancies/>}/>
-                <Route path="/vacancies/${id}/" element ={<DescriptionVacancy/>}/>
+                <Route path="/create_vacancy" element ={<CreateVacancy/>}/>
+                <Route path='/vacancies/:id/' element ={<DescriptionVacancy/>}/>
                 <Route path="/test" element ={<Test/>}/>
                 <Route path="*" element={<Navigate to="/home"/>}/>
             </Routes>
