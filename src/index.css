@@ -216,6 +216,7 @@
 }
 
 
+
 .filter > div {
     flex: 1;
 }
@@ -223,6 +224,11 @@
 .filter-item{
     margin:0 20px 0 20px;
     border-right: 1px solid black;
+    height: 60px;
+}
+
+.filter-item-test{
+    margin:0 20px 0 20px;
     height: 60px;
 }
 
@@ -443,6 +449,13 @@
     border: 2px solid white;
     color: white;
     padding: 5px 40px 5px 40px;
+}
+
+.border-bottom{
+    border-bottom: 1px solid rgba(0, 22, 220, 0.17);
+}
+.border-right{
+    border-right: 1px solid rgba(0, 22, 220, 0.17);
 }
 
 

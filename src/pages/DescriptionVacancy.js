@@ -1,17 +1,15 @@
 import React, {useCallback, useEffect} from 'react'
-import axios from "axios";
 import {useHttp} from "../hooks/http.hook";
-import {NavLink} from "react-router-dom";
-import icon from "../assets/filter/pin.png";
-import doc from "../assets/filter/doc.png";
-import search from "../assets/filter/search.png";
 import {OptionsFetch} from "../components/registration/OptionsFetch";
-import {VacanciesFetch} from "../components/vacancies/VacanciesFetch";
+import SearchIcon from "../assets/filter/search.png";
+import LocationIcon from "../assets/filter/pin.png";
+import {VacanciesBlockFetch} from "../components/home-content-blocks/VacanciesBlockFetch";
 
 export const DescriptionVacancy = () => {
     const [desc, setDesc] = React.useState('');
     const [country, setCountry] = React.useState('');
     const [city, setCity] = React.useState('');
+    const [company, setCompany] = React.useState('');
     const {loading, request} = useHttp();
 
     const fetch = useCallback(async () => {
@@ -20,8 +18,10 @@ export const DescriptionVacancy = () => {
             const fetched = await request('http://hr-backend.jcloud.kz' + href, 'GET', null, {
             })
             setDesc(fetched);
+            console.log(fetched);
             setCountry(fetched.city.country);
             setCity(fetched.city);
+            setCompany(fetched.company);
         } catch (e) {}
     }, [request])
 
@@ -33,78 +33,79 @@ export const DescriptionVacancy = () => {
 
     return(
         <>
-            {desc !== '' &&  <div className='row'>
-                <div className = 'col s12' style={{marginTop:-20, minHeight:800}}>
-                    <div style={{width:"86%", marginLeft:"7%"}}>
-                        <div className='row headh1' style={{padding:20}}>
-                            <div className='col s8 offset-s2 filter z-depth-2'>
-                                <div className='col s5' style={{marginLeft:0, marginTop:10, display:'flex', flexDirection:'row'}}>
-                                    <img src={search} style={{marginRight:5,width:15, height:15, marginTop:15}}/>
-                                    <input value='Backend'/>
-                                </div>
-                                <div className='col s5 center' style={{marginTop:10, display:'flex', flexDirection:'row'}}>
-                                    <img src={icon} style={{width:15, height:15, marginTop:15}}/>
-                                    <select className='browser-default filter-select'>
-                                        <OptionsFetch/>
-                                    </select>
-                                </div>
-                                <div className='col s2 right-align'>
-                                    <button>Start</button>
-                                </div>
+            <div  className = 'page-head'>
+                <div style={{height:60, marginTop:25}} className = 'filter'>
+                    <div className='filter-item' style={{display:'flex', alignItems:'center'}}>
+                        <div style={{placeContent:'flex-start', width:'100%', display:'flex', alignItems:'center'}}>
+                            <img src={SearchIcon} style={{width:20, height:20}}/>
+                            <div className='filter-input'>
+                                <input placeholder='example: backend developer'/>
                             </div>
                         </div>
-
-                        <div className = 'row' style={{paddingLeft:30, paddingRight:30}}>
-                            <div className='col s3'>
-
+                    </div>
+                    <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+                        <div style={{placeContent:'flex-start', width:'100%', display:'flex', alignItems:'center'}}>
+                            <img src={LocationIcon} style={{width:20, height:20}}/>
+                            <div className='filter-input'>
+                                <select>
+                                    <OptionsFetch/>
+                                </select>
                             </div>
                         </div>
-
-                        <div className='valign-wrapper'>
-                            <div className='col s8'>
-                                <div className='col s2'>
-                                    <img className='responsive-img' style={{background:'black', width:70, height:70}}/>
-                                </div>
-                                <div className='col s5' style={{marginTop:-10}}>
-                                    <h5 style={{height:80}}>{desc.title}</h5>
-                                    <button style={{marginTop:10}} className='button-filled-blue'>Apply</button>
-                                </div>
-                                <div className='col s12 divider' style={{marginTop:70}}/>
-
-
-                                <div className='col s12'>
-                                    <div className='col s3' style={{marginLeft:10}}>
-                                        <h6>SALARY</h6>
-                                        <p>{desc.salary}</p>
-                                    </div>
-                                    <div className='col s3' style={{marginRight:10}}>
-                                        <h6>CREATED AT</h6>
-                                        <p>{desc.created_at.substring(0,10)}</p>
-                                    </div>
-                                    <div className='col s4' style={{marginRight:10}}>
-                                        <h6>LOCATION</h6>
-                                        <p>{country.name}, {city.name}</p>
-                                    </div>
-                                </div>
-
-                                <div className='col s12'>
-                                    <div className = 'col s3'>
-                                        <button style={{minWidth:250}} className='button-filled-blue'>{desc.position.name}</button>
-                                    </div>
-                                    <div className = 'col s4 offset-s1'>
-                                        <button style={{minWidth:300}} className='button-filled-blue'>{desc.type}</button>
-                                    </div>
-                                </div>
-
-                                <div style={{marginLeft:20}} className='col s12'>
-                                    <p>{desc.description}</p>
-                                </div>
-                            </div>
-
+                        <div style={{placeContent:'flex-end'}}>
+                            <button className='button-search'>Search</button>
                         </div>
                     </div>
                 </div>
-            </div>}
+            </div>
+
+            <div style={{marginLeft:'10%', marginRight:'10%'}}>
+                <div style={{display:'flex'}}>
+                    <div className='border-right'><VacanciesBlockFetch/></div>
+                    <div>
+                        <div className='border-bottom' style={{display:'flex', margin:30}}>
+                            <div>
+                                <img style={{background:'black', width:70, height:70}}/>
+                            </div>
+                            <div>
+                                <h3 style={{marginLeft:30}}>{desc.title}</h3>
+                                <button style={{marginLeft:30, marginTop:10, marginBottom:20}} className='button-filled-blue'>Apply Now</button>
+                            </div>
+                        </div>
+                        <div style={{display:'flex'}}>
+                            <div style={{padding:30}}>
+                                <h5>SALARY</h5>
+                                <p>{desc.salary}</p>
+                            </div>
+                            <div style={{padding:30}}>
+                                <h5>CREATED AT</h5>
+                                <p>{desc.created_at !== undefined && (desc.created_at).slice(0,10)}</p>
+                            </div>
+                            <div style={{padding:30}}>
+                                <h5>LOCATION</h5>
+                                <p>{city.name}, {country.name}</p>
+                            </div>
+                        </div>
+
+                        <div style={{display:'flex'}}>
+                            <div style={{padding:30}}>
+                                <p style={{background:'#DCDFFF', paddingLeft:30, paddingRight:30, paddingTop:10, paddingBottom:10, borderRadius:40}}>{company.company_name}</p>
+                            </div>
+                            <div style={{padding:30}}>
+                                <p style={{background:'#DCDFFF', paddingLeft:30, paddingRight:30, paddingTop:10, paddingBottom:10, borderRadius:40}}>{desc.exp_type}</p>
+                            </div>
+                            <div style={{padding:30}}>
+                                <p style={{background:'#DCDFFF', paddingLeft:30, paddingRight:30, paddingTop:10, paddingBottom:10, borderRadius:40}}>{desc.type}</p>
+                            </div>
+                        </div>
+
+                        <div style={{padding:30}}>
+                            <p>{desc.description}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </>
     )
 }

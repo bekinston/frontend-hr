@@ -50,8 +50,6 @@ export const AsCompany = () => {
             })
     }
 
-
-
     const Register = async() => {
         if(data.password === confirm.confirm_password){
             await axios.post("http://hr-backend.jcloud.kz/registration/", {...data})
@@ -103,7 +101,7 @@ export const AsCompany = () => {
                         <div className='filter-input' style={{marginTop:30, width:'80%'}}>
                             <label className='input-label'>City</label>
                             <div style={{marginTop:20}}>
-                                <select>
+                                <select
                                         className="browser-default select" onChange={changeHandler} name='city'>
                                     <OptionsFetch/>
                                 </select>

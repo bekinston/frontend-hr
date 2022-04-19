@@ -92,7 +92,7 @@ export const CreateVacancy = () => {
                             <h3>City</h3>
                             <div style={{display:'flex', marginTop:10}}>
                                 <div className='filter-input' style={{width:'100%', alignItems:'center', marginLeft:0, marginRight:0}}>
-                                    <select style={{paddingTop:10, paddingBottom:10, paddingLeft:10}}>
+                                    <select style={{paddingTop:10, paddingBottom:10, paddingLeft:10}}
                                         className="browser-default select" onChange={changeHandler} name='city'>
                                         <OptionsFetch/>
                                     </select>
@@ -104,7 +104,7 @@ export const CreateVacancy = () => {
                             <h3>Position</h3>
                             <div style={{display:'flex', marginTop:10}}>
                                 <div className='filter-input' style={{width:'100%', alignItems:'center', marginLeft:0, marginRight:0}}>
-                                    <select style={{paddingTop:10, paddingBottom:10, paddingLeft:10}}>
+                                    <select style={{paddingTop:10, paddingBottom:10, paddingLeft:10}}
                                         className="browser-default select" onChange={changeHandler} name='position'>
                                         <PositionsFetch/>
                                     </select>
