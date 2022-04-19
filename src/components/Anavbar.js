@@ -5,6 +5,7 @@ export const Anavbar = () => {
 
 
     return(
+        <>
             <div className='navigation-filled'>
                 <ul>
                     <li><NavLink to="/" style={{ textDecoration: 'none' }}><span>Home</span></NavLink></li>
@@ -14,5 +15,7 @@ export const Anavbar = () => {
                     <li><NavLink to={'/profile'} style={{ textDecoration: 'none' }}><span>Profile</span></NavLink></li>
                 </ul>
             </div>
+        </>
+
     )
 }

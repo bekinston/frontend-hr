@@ -8,7 +8,7 @@ export const OptionsList = ({ cities }) => {
     return (
         <>
 
-            <option>Location</option>
+            <option>Choose location</option>
                 { cities.map((city, index) => {
                     return (
                         <>

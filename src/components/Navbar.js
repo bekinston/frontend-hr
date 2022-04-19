@@ -27,7 +27,6 @@ export const Navbar = () => {
 
     return(
         <>
-
             <div style={{display:'flex', justifyContent:'space-between'}} className={transparent === true ? 'navigation' : 'navigation-filled'}>
 
                 {

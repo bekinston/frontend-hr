@@ -11,6 +11,7 @@ import tds from '../assets/partners/tds.png';
 import airastana from '../assets/partners/airastana.png';
 import sdu from '../assets/partners/sdu.png';
 import {HotListingJobFetch} from "../components/home-content-blocks/HotListingJobFetch";
+import { useLocation, NavLink } from "react-router-dom";
 
 
 export const Home = () => {
@@ -21,6 +22,9 @@ export const Home = () => {
         return <Loader/>
     }
 
+    const Redirect = (location)=>{
+
+    }
 
 
     return(
@@ -35,7 +39,7 @@ export const Home = () => {
                     <div style={{width:450, marginLeft:60}}>
                         <h2 style={{color:'#03157A'}}>Make a great Career</h2>
                         <p style={{marginTop:20}}>Enjoin community and start your successful career with us today! Here you will find experienced  friendly atmosphere and develop yourself!</p>
-                        <button style={{marginTop:20}} className='button-filled-blue'>Know more</button>
+                        <button onClick={()=>{}} style={{marginTop:20}} className='button-filled-blue'>Know more</button>
                     </div>
                 </div>
 
@@ -43,7 +47,7 @@ export const Home = () => {
                     <div>
                         <h2 style={{color:'#03157A'}}>Hot listing Job</h2>
                         <HotListingJobFetch />
-                        <button style={{marginTop:20}} className='button-filled-blue'>View more</button>
+                        <button onClick={()=>{}} style={{marginTop:20}} className='button-filled-blue'>View more</button>
                     </div>
                     <div>
                         <img src={hot} style={{height:400}}/>
@@ -70,7 +74,7 @@ export const Home = () => {
                             <img src={home1} style={{height:300}}/>
                             <div style={{marginLeft:45}}>
                                 <p style={{fontSize:22, color:'#03157A', marginTop:20}}>Сonduct the initial selection of employees online</p>
-                                <button style={{marginTop:20}} className='button-filled-blue'>Create Test</button>
+                                <button onClick={()=>{}} style={{marginTop:20}} className='button-filled-blue'>Create Test</button>
                             </div>
 
                         </div>
@@ -82,7 +86,7 @@ export const Home = () => {
                         <div style={{padding:20}}>
                             <img src={home3} style={{height:300, marginTop:20}}/>
                             <p style={{fontSize:22, color:'#03157A'}}>Create and promote your vacancies for fast recruitment</p>
-                            <button style={{marginTop:20}}  className='button-filled-blue'>Upload vacancy</button>
+                            <button onClick={()=>{}} style={{marginTop:20}}  className='button-filled-blue'>Upload vacancy</button>
                         </div>
 
                     </div>
@@ -94,7 +98,7 @@ export const Home = () => {
                         <p style={{color:'white'}} >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                     </div>
                     <div>
-                        <button className={'button-filled-white'}>start</button>
+                        <button onClick={()=>{}} className={'button-filled-white'}>start</button>
                     </div>
                 </div>
 

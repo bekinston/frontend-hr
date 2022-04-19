@@ -160,7 +160,7 @@ export const AsEmployee = () => {
                         <div className='filter-input' style={{marginTop:30, width:'80%'}}>
 
                             <label className='input-label'>City</label>
-                            <div style={{marginTop:4, borderWidth:1, borderColor:'#144AF1', padding: 5, borderRadius:5}}>
+                            <div style={{marginTop:5}}>
                                 <select className="browser-default select" onChange={changeHandler} name='city'>
                                     <OptionsFetch/>
                                 </select>
