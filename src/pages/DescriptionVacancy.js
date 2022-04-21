@@ -1,11 +1,18 @@
-import React, {useCallback, useEffect} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import {useHttp} from "../hooks/http.hook";
 import {OptionsFetch} from "../components/registration/OptionsFetch";
 import SearchIcon from "../assets/filter/search.png";
 import LocationIcon from "../assets/filter/pin.png";
 import {VacanciesBlockFetch} from "../components/home-content-blocks/VacanciesBlockFetch";
+import {NavLink} from "react-router-dom";
 
 export const DescriptionVacancy = () => {
+    const [info, setInfo] = useState();
+    const accessTokenObj = JSON.parse(localStorage.getItem("userData"));
+
+    const headers = {
+
+    }
     const [desc, setDesc] = React.useState('');
     const [country, setCountry] = React.useState('');
     const [city, setCity] = React.useState('');
@@ -16,6 +23,8 @@ export const DescriptionVacancy = () => {
         try {
             const href = window.location.pathname;
             const fetched = await request('http://hr-backend.jcloud.kz' + href, 'GET', null, {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token '+ accessTokenObj.token
             })
             setDesc(fetched);
             console.log(fetched);
@@ -69,7 +78,7 @@ export const DescriptionVacancy = () => {
                             </div>
                             <div>
                                 <h3 style={{marginLeft:30}}>{desc.title}</h3>
-                                <button style={{marginLeft:30, marginTop:10, marginBottom:20}} className='button-filled-blue'>Apply Now</button>
+                                <NavLink to={`/vacancies/${desc.id}/tests`}><button style={{marginLeft:30, marginTop:10, marginBottom:20}} onClick={()=>{console.log(window.location.pathname)}} className='button-filled-blue'>Apply Now</button></NavLink>
                             </div>
                         </div>
                         <div style={{display:'flex'}}>

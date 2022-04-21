@@ -10,7 +10,7 @@ export const TestsFetch = () => {
 
     const fetchTests = useCallback(async () => {
         try {
-            const fetched = await request('http://hr-backend.jcloud.kz/test', 'GET', null, {
+            const fetched = await request('http://hr-backend.jcloud.kz/', 'GET', null, {
             })
             setTest(fetched)
             console.log(fetched)

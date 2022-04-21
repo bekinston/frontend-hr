@@ -5,6 +5,7 @@ import {OptionsFetch} from "../components/registration/OptionsFetch";
 import {NavLink} from "react-router-dom";
 import {useHttp} from "../hooks/http.hook";
 import {VacanciesList} from "../components/vacancies/VacanciesList";
+import axios from "axios";
 
 export const Vacancies = () => {
     const [data, setData] = useState({
@@ -19,6 +20,30 @@ export const Vacancies = () => {
     const [vacancies, setVacancies] = useState([]);
     const [positions, setPositions] = useState([]);
     const {loading, request} = useHttp();
+
+    const [is_company, setIs_company] = useState(false);
+    const accessTokenObj = JSON.parse(localStorage.getItem("userData"));
+
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Token '+ accessTokenObj.token
+    }
+
+    const getInfo = async() => {
+        await axios.get(`http://hr-backend.jcloud.kz/profile/info/` , {
+            headers : headers
+        })
+            .then(async function (response) {
+                if(response.data.is_company === true){
+                    setIs_company(true);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+
 
     const changeHandler = event => {
         setData({ ...data, [event.target.name]: event.target.value})
@@ -58,6 +83,7 @@ export const Vacancies = () => {
     useEffect(() => {
         fetchPositions()
         fetchVacancies()
+        getInfo()
     }, [fetchPositions])
 
     return(
@@ -153,11 +179,13 @@ export const Vacancies = () => {
 
             <div className = 'page-content' style={{minHeight:600}}>
                 <VacanciesList vacancies={vacancies}/>
+            </div>
+            {
+                is_company === true ? (<div style={{display:'flex', width:'100%', justifyContent:'center', marginBottom:40}}>
+                    <center><NavLink to={'/create_vacancy'}><button onClick={()=>{window.scrollTo(0, 0)}} className='button-filled-yellow'>Create My Vacancy</button></NavLink></center>
+                </div>) : (<></>)
+            }
 
-            </div>
-            <div style={{display:'flex', width:'100%', justifyContent:'center', marginBottom:40}}>
-                <center><NavLink to={'/create_vacancy'}><button onClick={()=>{window.scrollTo(0, 0)}} className='button-filled-yellow'>Create My Vacancy</button></NavLink></center>
-            </div>
         </>
     )
 }

@@ -458,4 +458,10 @@
     border-right: 1px solid rgba(0, 22, 220, 0.17);
 }
 
+.question{
+    border-radius: 20px;
+    background: linear-gradient(90deg, #174FF1 3.32%, #6ACEE2 100%);
+    padding: 0 2px 4px 8px;
+}
+
 

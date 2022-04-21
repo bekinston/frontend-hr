@@ -40,7 +40,7 @@ export const VacanciesList = ({ vacancies }) => {
                                     </div>
                                 </div>
                                 <div>
-                                    <button className='button-filled-blue'>Apply</button>
+                                    <NavLink to={`/vacancies/${vacancy.id}/tests`}><button className='button-filled-blue'>Apply</button></NavLink>
                                 </div>
                             </div>
                             <div style = {{width:'90%', height:1, background:'grey'}}/>
