@@ -7,7 +7,7 @@ export const Test = () => {
     const {loading, request} = useHttp();
     const [tests, setTests] = useState([]);
     const [answers, setAnswers] = useState([]);
-    const [test, setTest] = useState({});
+    const [test, setTest] = useState([]);
     const [score, setScore] = useState(0);
     const href = window.location.pathname;
     const {token, login, logout, ready} = useAuth();
@@ -31,11 +31,12 @@ export const Test = () => {
     }, [request])
 
     useEffect(() => {
+
         if(accessTokenObj !== null){
             fetch();
         }
 
-    }, [fetch])
+    }, [fetch, ])
 
     const changeHandler = event => {
         setAnswers(prevState => ({
@@ -43,13 +44,12 @@ export const Test = () => {
             [event.target.name.split('|')[1]]:{'test':event.target.name.split('|')[0], 'q':event.target.name.split('|')[1], 'value':event.target.value}
         }))
 
-
-
     }
 
-    const confirmHandler = () => {
-        console.log(answers);
 
+
+    const testResult = () => {
+        console.log(answers);
         for(let i = 0; i < tests.length; i ++){
             let score = 0
             for(let n = 1; n < Object.keys(answers).length + 1; n++){
@@ -57,18 +57,30 @@ export const Test = () => {
                     score = score + parseInt(answers[n].value)
                 }
             }
-            setTest(prevState =>({...prevState, [tests[i].id] : {score}}));
+            const newTest = test;
+            newTest.push({[tests[i].id]: {score}})
+            // setTest(prevState =>({...prevState, [tests[i].id] : {score}}));
+            setTest(newTest)
         }
 
-        axios.post('http://hr-backend.jcloud.kz' + href +'/', {...test} , {
-            headers : headers
-        })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        console.log(test);
+    }
+
+
+
+    const confirmHandler = () => {
+        console.log(test);
+
+        testResult()
+        // axios.post('http://hr-backend.jcloud.kz' + href +'/', {...test} , {
+        //     headers : headers
+        // })
+        //     .then(function (response) {
+        //         console.log(response);
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
     }
 
 

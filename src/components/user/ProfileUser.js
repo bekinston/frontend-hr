@@ -3,23 +3,50 @@ import clock from "../../assets/profile/clock.png";
 import trophy from "../../assets/profile/trophy.png";
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import axios from "axios";
+import ReactDOM from 'react-dom';
+import Modal from 'react-modal';
+import {ExperienceFetch} from "../profile-vidgets/ExperienceFetch";
+import {PositionsFetch} from "../vacancies/PositionsFetch";
+import {SkillFetch} from "../vacancies/SkillFetch";
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
+
 
 export const ProfileUser = () => {
     const [info, setInfo] = useState();
     const [id, setId] = useState();
     const accessTokenObj = JSON.parse(localStorage.getItem("userData"));
+
     const [experience, setExperience] = useState({
         name:'',
-        position:'',
+        position: '',
         description:'',
         date_from:'',
         date_to:'',
     });
 
-    const experiencechangeHandler = event => {
+    const [skill, setSkill] = useState({
+        skill:'',
+    });
+
+
+    const experienceChange = event => {
         setExperience({...experience, [event.target.name]: event.target.value});
     }
 
+
+    const skillChange = event => {
+        setSkill({...skill, [event.target.name]: event.target.value});
+    }
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Token '+ accessTokenObj.token
@@ -31,12 +58,23 @@ export const ProfileUser = () => {
         })
             .then(async function (response) {
                 setId(response.data.id);
+                await axios.get(`http://hr-backend.jcloud.kz/profile/${response.data.id}/similar/` , {
+                    headers : headers
+                })
+                    .then(async function (response) {
+                        console.log(response.data)
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
                 await axios.get(`http://hr-backend.jcloud.kz/profile/${response.data.id}/` , {
                     headers : headers
                 })
                     .then(async function (response) {
                         console.log(response.data);
                         setInfo(response.data);
+
+
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -48,17 +86,41 @@ export const ProfileUser = () => {
     }
 
     useEffect(() => {
-        getInfo()
+        getInfo();
+        getSimular();
     }, [])
 
-    const exerienceAdd = () => {
-        alert(<input/>)
-        return(
-            <>
-                123
-            </>
-        )
+
+    const addExperience = () => {
+        axios.post(`http://hr-backend.jcloud.kz/profile/${id}/experience/` ,{...experience}, {
+            headers : headers
+        })
+            .then(async function (response) {
+                window.location.reload();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
+
+    const addSkills = () => {
+        axios.post(`http://hr-backend.jcloud.kz/profile/${id}/skills/` ,{...skill}, {
+            headers : headers
+        })
+            .then(async function (response) {
+               // window.location.reload();
+                window.location.reload();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+
+    const getSimular = async() => {
+
+    }
+
 
     return (
         <>
@@ -66,6 +128,7 @@ export const ProfileUser = () => {
                 <div className='card-back'>
                     <p style={{color: 'transparent'}}>123</p>
                     <div className='card'>
+
 
                         <div style={{display: 'flex', padding: 30}}>
                             <div>
@@ -83,7 +146,6 @@ export const ProfileUser = () => {
                                     part of my life
                                     for as long as I can remember even as a child. I have always loved colour
                                     in whatever medium I have chosen to work MORE</p>
-
                                 <div style={{
                                     width: '80%',
                                     display: 'flex',
@@ -127,6 +189,7 @@ export const ProfileUser = () => {
                                         </Tab>
                                         <Tab focus={false} style={{paddingLeft: 30, paddingRight: 30}}><p>Passed
                                             Tests</p></Tab>
+                                        <Tab focus={false} style={{paddingLeft: 30, paddingRight: 30}}><p>Applied Vacancies</p></Tab>
                                     </TabList>
 
                                     <TabPanel>
@@ -137,23 +200,103 @@ export const ProfileUser = () => {
                                                 alignItems: 'center'
                                             }}>
                                                 <h2>Job Experience</h2>
-                                                <button className='button-filled-blue' onClick={exerienceAdd}>Edit</button>
                                             </div>
                                             <div style={{marginTop: 40}}>
+                                                <div>
+                                                    <select name='position' value={experience.position} onChange={experienceChange}>
+                                                        <PositionsFetch/>
+                                                    </select>
 
+                                                    <input name='name' value={experience.name} onChange={experienceChange}/>
+                                                    <input type='date' name='date_to' value={experience.date_to} onChange={experienceChange}/>
+                                                    <input type='date' name='date_from' value={experience.date_from} onChange={experienceChange}/>
+                                                    <input name='description' value={experience.description} onChange={experienceChange}/>
+                                                    <button onClick={addExperience} className='button-filled-blue'>add</button>
+                                                </div>
                                             </div>
+                                            { info.experiences.map((position, index) => {
+                                                    return (
+                                                        <>
+                                                            <div>{position.description}</div>
+                                                            <button onClick={()=>{axios.delete(`http://hr-backend.jcloud.kz/profile/${id}/experience/${position.id}` ,{...experience}, {
+                                                                headers : headers
+                                                            })
+                                                                .then(async function (response) {
+                                                                    window.location.reload(true);
+                                                                })
+                                                                .catch(function (error) {
+                                                                    console.log(error);
+                                                                });
+
+                                                            }}>delete</button>
+                                                        </>
+                                                    )
+                                                }
+                                            )
+                                            }
                                         </div>
                                     </TabPanel>
 
                                     <TabPanel>
                                         <div className='profile-card'>
-                                            Skills
+                                            <h2>Skills</h2>
+                                            <div>
+                                                <select name='skill' value={skill.name} onChange={skillChange}>
+                                                    <SkillFetch/>
+                                                </select>
+
+                                                <button onClick={addSkills} className='button-filled-blue'>add</button>
+                                            </div>
+                                            { info.skills.map((position, index) => {
+                                                    return (
+                                                        <>
+                                                            <div>{position.id}</div>
+                                                            <div>{position.name}</div>
+                                                            <button onClick={()=>{axios.delete(`http://hr-backend.jcloud.kz/profile/${id}/skills/${position.id}` , {
+                                                                headers : headers,
+                                                            })
+                                                                .then(async function (response) {
+                                                                    window.location.reload();
+                                                                })
+                                                                .catch(function (error) {
+                                                                    console.log(error);
+                                                                });}}>delete</button>
+                                                        </>
+                                                    )
+                                                }
+                                            )
+                                            }
                                         </div>
                                     </TabPanel>
 
                                     <TabPanel>
                                         <div className='profile-card'>
-                                            Passed Tests
+                                            <h2>Passed Tests</h2>
+                                            { info.result_set.map((position, index) => {
+                                                    return (
+                                                        <>
+                                                            <div>{position.test.title} {position.score}</div>
+                                                        </>
+                                                    )
+                                                }
+                                            )
+                                            }
+                                        </div>
+                                    </TabPanel>
+
+
+                                    <TabPanel>
+                                        <div className='profile-card'>
+                                            <h2>Applied Vacancies</h2>
+                                            { info.vacancyreply_set.map((position, index) => {
+                                                    return (
+                                                        <>
+                                                            <div>{position.vacancy.title}</div>
+                                                        </>
+                                                    )
+                                                }
+                                            )
+                                            }
                                         </div>
                                     </TabPanel>
                                 </Tabs>
@@ -165,6 +308,9 @@ export const ProfileUser = () => {
 
                             <div style={{width: "30%", marginLeft: 10, marginTop: 50, alignContent: 'center'}}>
                                 <h3 style={{width: '100%', textAlign: 'center'}}>SIMILAR PROFILES</h3>
+                                {
+
+                                }
                             </div>
                         </div>
                     </div>
