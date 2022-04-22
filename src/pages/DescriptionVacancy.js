@@ -59,13 +59,13 @@ export const DescriptionVacancy = () => {
                         <div style={{placeContent:'flex-start', width:'100%', display:'flex', alignItems:'center'}}>
                             <img src={LocationIcon} style={{width:20, height:20}}/>
                             <div className='filter-input'>
-                                <select>
+                                <select style={{border:'none', marginTop:5}}>
                                     <OptionsFetch/>
                                 </select>
                             </div>
                         </div>
                         <div style={{placeContent:'flex-end'}}>
-                            <button className='button-search'>Search</button>
+                            <NavLink to={'/vacancies'}><button className='button-search'>Search</button></NavLink>
                         </div>
                     </div>
                 </div>

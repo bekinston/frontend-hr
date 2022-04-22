@@ -106,7 +106,7 @@ export const Vacancies = () => {
                     <div style={{placeContent:'flex-start', width:'100%', display:'flex', alignItems:'center'}}>
                         <img src={LocationIcon} style={{width:20, height:20}}/>
                         <div className='filter-input'>
-                            <select style={{border:'none'}} name='city' onChange={changeHandler}>
+                            <select style={{border:'none', marginTop:5}} name='city' onChange={changeHandler}>
                                 <OptionsFetch/>
                             </select>
                         </div>

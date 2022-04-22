@@ -39,7 +39,7 @@ export const Home = () => {
                     <div style={{width:450, marginLeft:60}}>
                         <h2 style={{color:'#03157A'}}>Make a great Career</h2>
                         <p style={{marginTop:20}}>Enjoin community and start your successful career with us today! Here you will find experienced  friendly atmosphere and develop yourself!</p>
-                        <button onClick={()=>{}} style={{marginTop:20}} className='button-filled-blue'>Know more</button>
+                        <NavLink to={'/about'}><button onClick={()=>{window.scrollTo(0, 0)}} style={{marginTop:20}} className='button-filled-blue'>Know more</button></NavLink>
                     </div>
                 </div>
 
@@ -47,7 +47,8 @@ export const Home = () => {
                     <div>
                         <h2 style={{color:'#03157A'}}>Hot listing Job</h2>
                         <HotListingJobFetch />
-                        <button onClick={()=>{}} style={{marginTop:20}} className='button-filled-blue'>View more</button>
+                        <NavLink to={'/vacancies'}><button onClick={()=>{window.scrollTo(0, 0)}} style={{marginTop:20}} className='button-filled-blue'>View more</button>
+                        </NavLink>
                     </div>
                     <div>
                         <img src={hot} style={{height:400}}/>
@@ -81,12 +82,12 @@ export const Home = () => {
                         <div style={{padding:20}}>
                             <img src={home2} style={{height:300}}/>
                             <p style={{fontSize:22, color:'#03157A', marginTop:20}}>Convenient search for the employees you need </p>
-                            <button style={{marginTop:20}}  className='button-filled-blue'>Find Empoyee</button>
+                            <NavLink to={'/vacancies'}><button style={{marginTop:20}} onClick={()=>{window.scrollTo(0,0)}}  className='button-filled-blue'>Find Empoyee</button></NavLink>
                         </div>
                         <div style={{padding:20}}>
                             <img src={home3} style={{height:300, marginTop:20}}/>
                             <p style={{fontSize:22, color:'#03157A'}}>Create and promote your vacancies for fast recruitment</p>
-                            <button onClick={()=>{}} style={{marginTop:20}}  className='button-filled-blue'>Upload vacancy</button>
+                            <NavLink to={'/vacancies'}><button onClick={()=>{window.scrollTo(0,0)}} style={{marginTop:20}}  className='button-filled-blue'>Upload vacancy</button></NavLink>
                         </div>
 
                     </div>
@@ -98,7 +99,7 @@ export const Home = () => {
                         <p style={{color:'white'}} >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                     </div>
                     <div>
-                        <button onClick={()=>{}} className={'button-filled-white'}>start</button>
+                       <NavLink to={'/vacancies'}><button onClick={()=>{window.scrollTo(0, 0)}} className={'button-filled-white'}>start</button></NavLink>
                     </div>
                 </div>
 
