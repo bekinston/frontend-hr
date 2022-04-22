@@ -27,7 +27,6 @@ export const DescriptionVacancy = () => {
                 'Authorization': 'Token '+ accessTokenObj.token
             })
             setDesc(fetched);
-            console.log(fetched);
             setCountry(fetched.city.country);
             setCity(fetched.city);
             setCompany(fetched.company);
@@ -36,9 +35,13 @@ export const DescriptionVacancy = () => {
 
     useEffect(() => {
 
-            fetch();
+        fetch();
 
     }, [fetch])
+
+    console.log(company);
+    console.log(desc);
+
 
     return(
         <>
@@ -98,7 +101,7 @@ export const DescriptionVacancy = () => {
 
                         <div style={{display:'flex'}}>
                             <div style={{padding:30}}>
-                                <p style={{background:'#DCDFFF', paddingLeft:30, paddingRight:30, paddingTop:10, paddingBottom:10, borderRadius:40}}>{company.company_name}</p>
+                                <NavLink to={`/profile/${company.id}`}><p style={{background:'#DCDFFF', paddingLeft:30, paddingRight:30, paddingTop:10, paddingBottom:10, borderRadius:40}}>{company.company_name}</p></NavLink>
                             </div>
                             <div style={{padding:30}}>
                                 <p style={{background:'#DCDFFF', paddingLeft:30, paddingRight:30, paddingTop:10, paddingBottom:10, borderRadius:40}}>{desc.exp_type}</p>

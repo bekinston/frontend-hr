@@ -2,6 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react'
 import {useHttp} from "../hooks/http.hook";
 import axios from "axios";
 import {useAuth} from "../hooks/auth.hook";
+import {NavLink, useNavigate} from "react-router-dom";
 
 export const Test = () => {
     const {loading, request} = useHttp();
@@ -66,21 +67,23 @@ export const Test = () => {
         console.log(test);
     }
 
-
+    const navigate = useNavigate();
 
     const confirmHandler = () => {
         console.log(test);
 
         testResult()
-        // axios.post('http://hr-backend.jcloud.kz' + href +'/', {...test} , {
-        //     headers : headers
-        // })
-        //     .then(function (response) {
-        //         console.log(response);
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
+         axios.post('http://hr-backend.jcloud.kz' + href +'/', test, {
+             headers : headers
+         })
+             .then(function (response) {
+                 console.log(response);
+                 navigate('/profile');
+
+             })
+             .catch(function (error) {
+                 console.log(error);
+            });
     }
 
 

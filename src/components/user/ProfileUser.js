@@ -13,6 +13,7 @@ import Collapsible from 'react-collapsible';
 import {OptionsFetch} from "../registration/OptionsFetch";
 import del from '../../assets/utils/delete.png'
 import {AuthContext} from "../../context/AuthContext";
+import {NavLink} from "react-router-dom";
 
 const customStyles = {
     content: {
@@ -65,7 +66,6 @@ export const ProfileUser = () => {
         })
             .then(async function (response) {
                 setId(response.data.id);
-                console.log(response.data);
                 await axios.get(`http://hr-backend.jcloud.kz/profile/${response.data.id}/similar/` , {
                     headers : headers
                 })
@@ -79,7 +79,6 @@ export const ProfileUser = () => {
                     headers : headers
                 })
                     .then(async function (response) {
-                        console.log(response.data);
                         setInfo(response.data);
                     })
                     .catch(function (error) {
@@ -372,7 +371,7 @@ export const ProfileUser = () => {
                                                     return (
                                                         <>
                                                             <div style={{display:'flex', justifyContent:'space-between', marginTop:10}}>
-                                                                <h4 style={{width:'40%'}}>{position.vacancy.title}</h4>
+                                                                <NavLink style={{width:'40%'}} to={`/vacancies/${position.vacancy.id}`}><h4>{position.vacancy.title}</h4></NavLink>
                                                                 <p style={{width:'30%'}}>{position.vacancy.company.company_name}</p>
                                                                 <p style={{width:'30%'}}>{position.vacancy.type}</p>
                                                             </div>
@@ -396,7 +395,7 @@ export const ProfileUser = () => {
                                         return (
                                             <>
                                                 <div>
-                                                   <h4>{position.first_name} {position.last_name}</h4>
+                                                    <NavLink to={`/profile/${position.id}`}><h4>{position.first_name} {position.last_name}</h4></NavLink>
                                                     <p style={{color: 'grey', fontSize: 12}}>City: {position.city.name}, Experiences: {position.experiences.length}</p>
                                                 </div>
                                             </>

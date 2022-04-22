@@ -8,6 +8,7 @@ import {Test} from './pages/Test'
 import {User} from './pages/User'
 import {Vacancies} from './pages/Vacancies'
 import {CreateVacancy} from './pages/CreateVacancy'
+import {Person} from "./pages/Person";
 
 
 
@@ -19,6 +20,7 @@ export const useRoutes = isAuthenticated => {
                 <Route path="/" element ={<Home/>}/>
                 <Route path="/about" element ={<About/>}/>
                 <Route path="/profile" element ={<User/>}/>
+                <Route path='/profile/:id/' element ={<Person />}/>
                 <Route path="/register" element ={<Registration/>}/>
                 <Route path="/vacancies" element ={<Vacancies/>}/>
                 <Route path="/create_vacancy" element ={<CreateVacancy/>}/>
