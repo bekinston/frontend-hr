@@ -1,8 +1,13 @@
 import React, {useState} from 'react'
 import {OptionsFetch} from "../components/registration/OptionsFetch";
 import {PositionsFetch} from "../components/vacancies/PositionsFetch";
+import {TestsFetch} from "../components/registration/TestsFetch";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 export const CreateVacancy = () => {
+    const [tests, setTests] = useState([]);
+    let test = [];
     const [data, setData] = useState({
         title: '',
         description:'',
@@ -11,10 +16,42 @@ export const CreateVacancy = () => {
         exp_type:'',
         city:'',
         position:'',
-        test:'',
+        tests
     })
+
+    const accessTokenObj = JSON.parse(localStorage.getItem("userData"));
+
+    const navigate = useNavigate();
+
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization':'Token '+accessTokenObj.token
+    }
+
     const changeHandler = event => {
         setData({ ...data, [event.target.name]: event.target.value})
+    }
+
+    const confirmHandler = () => {
+        console.log(data);
+        axios.post('http://hr-backend.jcloud.kz/vacancies/', {...data}, {
+            headers : headers
+        })
+            .then(function (response) {
+                console.log(response);
+                navigate('/profile');
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    const pushHandler = event => {
+        if (event.target.value !== 'Choose test') {
+            tests.push(event.target.value)
+        }
+        console.log(tests);
     }
 
     return(
@@ -114,14 +151,16 @@ export const CreateVacancy = () => {
 
                         <div style={{marginTop:20}}>
                             <h3>Test</h3>
-                            <div style={{display:'flex', marginTop:10}}>
-                                <div style={{width:'98%', alignItems:'center'}}>
-                                    <input style={{padding:'1%'}} className='accept-input-writable'/>
-                                </div>
-                            </div>
+                            <select style={{paddingTop:10, paddingBottom:10, paddingLeft:10}}
+                                    className="browser-default select" onChange={pushHandler} name='position'>
+                                <TestsFetch/>
+
+                            </select>
+                            <input disabled={true} value={tests}/>
+
                         </div>
 
-                        <button style={{marginBottom:40, marginTop:30}} className='button-filled-blue'>Confirm</button>
+                        <button onClick={confirmHandler} style={{marginBottom:40, marginTop:30}} className='button-filled-blue'>Confirm</button>
 
                     </div>
 
