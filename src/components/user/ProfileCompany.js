@@ -78,9 +78,14 @@ export const ProfileCompany = () => {
                                 <Tabs selectedTabClassName="bg-white" TabClassName='bg-black'>
                                     <TabList style={{marginBottom: 40, borderWidth: 1, borderColor: '#0016DC'}}>
                                         <Tab focus={false} style={{paddingLeft: 30, paddingRight: 30}}><p>My Vacancies</p></Tab>
+                                        <Tab focus={false} style={{paddingLeft: 30, paddingRight: 30}}><p>Condidates</p></Tab>
                                     </TabList>
 
-
+                                    <TabPanel>
+                                        <div className='profile-card'>
+                                            <VacanciesBlockFetch />
+                                        </div>
+                                    </TabPanel>
 
                                     <TabPanel>
                                         <div className='profile-card'>
