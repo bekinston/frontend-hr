@@ -14,6 +14,7 @@ import {HotListingJobFetch} from "../components/home-content-blocks/HotListingJo
 import { useLocation, NavLink } from "react-router-dom";
 
 
+
 export const Home = () => {
     const {token, login, logout, ready} = useAuth()
     const isAuthenticated = !!token
